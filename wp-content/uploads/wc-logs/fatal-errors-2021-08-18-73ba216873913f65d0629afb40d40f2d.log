@@ -1,0 +1,387 @@
+2021-08-18T08:09:38+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:09:45+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:09:45+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:09:49+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:09:50+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:00+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:04+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:12+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:15+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:18+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:23+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:29+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:31+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:31+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:33+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:34+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:34+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:38+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:38+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:45+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:46+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:10:50+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:01+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:03+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:07+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:12+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:15+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:17+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:29+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:32+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:47+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T08:11:48+00:00 CRITICAL Uncaught Error: Call to undefined function issset() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:344
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-admin\admin-ajax.php(22): require_once('D:\\wamp64\\www\\t...')
+#4 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 344
+
+2021-08-18T09:50:42+00:00 CRITICAL syntax error, unexpected '}', expecting variable (T_VARIABLE) or '{' or '$' in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 390
+
+2021-08-18T09:50:54+00:00 CRITICAL syntax error, unexpected '}', expecting variable (T_VARIABLE) or '{' or '$' in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 390
+
+2021-08-18T09:50:57+00:00 CRITICAL syntax error, unexpected '}', expecting variable (T_VARIABLE) or '{' or '$' in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 390
+
+2021-08-18T09:50:58+00:00 CRITICAL syntax error, unexpected '}', expecting variable (T_VARIABLE) or '{' or '$' in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 390
+
+2021-08-18T09:50:58+00:00 CRITICAL syntax error, unexpected '}', expecting variable (T_VARIABLE) or '{' or '$' in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 390
+
+2021-08-18T09:50:58+00:00 CRITICAL syntax error, unexpected '}', expecting variable (T_VARIABLE) or '{' or '$' in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 390
+
+2021-08-18T09:50:58+00:00 CRITICAL syntax error, unexpected '}', expecting variable (T_VARIABLE) or '{' or '$' in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 390
+
+2021-08-18T09:51:08+00:00 CRITICAL syntax error, unexpected '}', expecting variable (T_VARIABLE) or '{' or '$' in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 390
+
+2021-08-18T10:00:22+00:00 CRITICAL syntax error, unexpected '*' in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 388
+
+2021-08-18T11:00:48+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function wc_maybe_store_user_agent(), 1 passed in D:\wamp64\www\test\wp-includes\class-wp-hook.php on line 303 and exactly 2 expected in D:\wamp64\www\test\wp-content\plugins\woocommerce\includes\wc-user-functions.php:856
+Stack trace:
+#0 D:\wamp64\www\test\wp-includes\class-wp-hook.php(303): wc_maybe_store_user_agent('bmpatel1@netclu...')
+#1 D:\wamp64\www\test\wp-includes\class-wp-hook.php(327): WP_Hook->apply_filters('', Array)
+#2 D:\wamp64\www\test\wp-includes\plugin.php(470): WP_Hook->do_action(Array)
+#3 D:\wamp64\www\test\wp-content\themes\punte\functions.php(383): do_action('wp_login', 'bmpatel1@netclu...')
+#4 D:\wamp64\www\test\wp-settings.php(546): include('D:\\wamp64\\www\\t...')
+#5 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#6 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#7 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#8 D:\wamp64\www\test\index.php(17):  in D:\wamp64\www\test\wp-content\plugins\woocommerce\includes\wc-user-functions.php on line 856
+
+2021-08-18T11:24:29+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function wc_maybe_store_user_agent(), 1 passed in D:\wamp64\www\test\wp-includes\class-wp-hook.php on line 303 and exactly 2 expected in D:\wamp64\www\test\wp-content\plugins\woocommerce\includes\wc-user-functions.php:856
+Stack trace:
+#0 D:\wamp64\www\test\wp-includes\class-wp-hook.php(303): wc_maybe_store_user_agent('bmpatel1@netclu...')
+#1 D:\wamp64\www\test\wp-includes\class-wp-hook.php(327): WP_Hook->apply_filters('', Array)
+#2 D:\wamp64\www\test\wp-includes\plugin.php(470): WP_Hook->do_action(Array)
+#3 D:\wamp64\www\test\wp-content\themes\punte\functions.php(387): do_action('wp_login', 'bmpatel1@netclu...')
+#4 D:\wamp64\www\test\wp-settings.php(546): include('D:\\wamp64\\www\\t...')
+#5 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#6 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#7 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#8 D:\wamp64\www\test\index.php(17):  in D:\wamp64\www\test\wp-content\plugins\woocommerce\includes\wc-user-functions.php on line 856
+
+2021-08-18T12:07:17+00:00 CRITICAL Uncaught Error: Call to undefined function sitr_url() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:405
+Stack trace:
+#0 D:\wamp64\www\test\wp-includes\class-wp-hook.php(303): ss_logout_redirect('http://192.168....', '', Object(WP_User))
+#1 D:\wamp64\www\test\wp-includes\plugin.php(189): WP_Hook->apply_filters('http://192.168....', Array)
+#2 D:\wamp64\www\test\wp-login.php(708): apply_filters('logout_redirect', 'http://192.168....', '', Object(WP_User))
+#3 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 405
+
+2021-08-18T12:20:47+00:00 CRITICAL Uncaught Error: Call to a member function get_error_message() on array in D:\wamp64\www\test\wp-content\themes\punte\functions.php:400
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(96): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 400
+
+2021-08-18T14:20:28+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in D:\wamp64\www\test\wp-content\themes\punte\functions.php:367
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(97): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 367
+
+2021-08-18T14:23:27+00:00 CRITICAL Uncaught Error: Cannot use object of type stdClass as array in D:\wamp64\www\test\wp-content\themes\punte\functions.php:371
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(97): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 371
+
+2021-08-18T14:54:21+00:00 CRITICAL Object of class WP_Error could not be converted to string in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 391
+
+2021-08-18T15:00:28+00:00 CRITICAL Uncaught Error: Call to undefined function pe() in D:\wamp64\www\test\wp-content\themes\punte\functions.php:398
+Stack trace:
+#0 D:\wamp64\www\test\wp-settings.php(546): include()
+#1 D:\wamp64\www\test\wp-config.php(97): require_once('D:\\wamp64\\www\\t...')
+#2 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#3 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#4 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\\www\\t...')
+#5 {main}
+  thrown in D:\wamp64\www\test\wp-content\themes\punte\functions.php on line 398
+

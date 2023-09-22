@@ -1,0 +1,12 @@
+2021-08-20T08:18:02+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function wc_maybe_store_user_agent(), 1 passed in D:\wamp64\www\test\wp-includes\class-wp-hook.php on line 303 and exactly 2 expected in D:\wamp64\www\test\wp-content\plugins\woocommerce\includes\wc-user-functions.php:856
+Stack trace:
+#0 D:\wamp64\www\test\wp-includes\class-wp-hook.php(303): wc_maybe_store_user_agent('netsales')
+#1 D:\wamp64\www\test\wp-includes\class-wp-hook.php(327): WP_Hook->apply_filters('', Array)
+#2 D:\wamp64\www\test\wp-includes\plugin.php(470): WP_Hook->do_action(Array)
+#3 D:\wamp64\www\test\wp-content\themes\punte\functions.php(429): do_action('wp_login', 'netsales')
+#4 D:\wamp64\www\test\wp-settings.php(546): include('D:\\wamp64\\www\\t...')
+#5 D:\wamp64\www\test\wp-config.php(97): require_once('D:\\wamp64\\www\\t...')
+#6 D:\wamp64\www\test\wp-load.php(50): require_once('D:\\wamp64\\www\\t...')
+#7 D:\wamp64\www\test\wp-blog-header.php(13): require_once('D:\\wamp64\\www\\t...')
+#8 D:\wamp64\www\test\index.php(17): require('D:\\wamp64\ in D:\wamp64\www\test\wp-content\plugins\woocommerce\includes\wc-user-functions.php on line 856
+
