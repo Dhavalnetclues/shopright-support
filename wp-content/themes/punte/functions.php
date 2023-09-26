@@ -535,3 +535,61 @@ function getSubCategory_func( $atts ) {
     
 }
 add_shortcode( 'subcategory', 'getSubCategory_func' );
+
+// function for Window POS listing
+function xp_local_pos_list() { 
+    
+    $queryArgs = [
+        // your post type here 
+        'post_type'         => 'local_pos',
+        // target post status 
+        'post_status'       => 'publish',
+        // maximum amount of posts, use -1 to set unlimited 
+        'posts_per_page' => -1,
+        // type of order 
+        'order'         => 'DESC',
+    ];
+    // SQL query will be executed during this line 
+    $posts = new WP_Query($queryArgs);
+    $content_html = '<div class="row">';
+    if ( $posts->have_posts() ) :
+        while ( $posts->have_posts() ) : $posts->the_post();
+          // Set variables
+          $Title = get_field('local_pos_title');
+          $LinkText = get_field('local_pos_link_text');
+          $Link = get_field('local_pos_link');
+          $Icon = get_field('local_pos_icon');
+          $Color = get_field('local_pos_color');
+            //   $featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+            //   $product_image1 = $featured_image[0];
+
+          // Output
+          $content_html .='<div class="vc_col-sm-3 wow fadeIn animated animated" style="visibility: visible; animation-name: fadeIn;">
+          <article class="single-post list-view">
+            <div class="portfolio_custom">
+              <div class="col-md-12 post-thumbnail">
+                  <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'">
+                </div>
+              </div>
+              <div class="post-details col-md-10">
+                <h6 class="post-name">
+                  <a href="'.$Link.'" title="'.$Title.'">'.$Title.'</a>
+                </h6>
+              </div>                 
+              <div class="post-search col-md-2"><a href="'.$Link.'" title="'.$Title.'"><i class="fa fa-search"></i></a></div>
+            </div>
+          </article>
+        </div>';
+        //   $content_html .= '<div class="product"><img src='.$Icon.' alt="'.$Title.'><h2>'.$Title.'</h2><img src='.$Icon.' alt="product-detail" class="product-detail align-right">
+        //     '.$LinkText.'<p><a href='.$Link.' target="_blank" name="Spec Sheet">Download Spec Sheet</a></p>
+        //   </div>';
+          
+          endwhile;
+        wp_reset_postdata();
+        $content_html .= '</div>';
+      endif;
+
+    return $content_html;
+    }
+    // register shortcode
+add_shortcode('local_pos', 'xp_local_pos_list');
