@@ -529,3 +529,9 @@ function remove_footer_admin (){
     echo '';
 } 
 add_filter('admin_footer_text', 'remove_footer_admin');
+
+function getSubCategory_func( $atts ) {
+    $mastercat = get_userdata( $atts['master'] );
+    
+}
+add_shortcode( 'subcategory', 'getSubCategory_func' );
