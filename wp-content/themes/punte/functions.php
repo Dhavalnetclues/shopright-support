@@ -610,31 +610,58 @@ function xp_cloud_office_list($atts) {
     if ( $posts->have_posts() ) :
         while ( $posts->have_posts() ) : $posts->the_post();
           // Set variables
-          $Title = get_field('cloud_office_title');
-          $LinkText = get_field('cloud_office_link_text');
-          $Link = get_field('cloud_office_link');
-          $Icon = get_field('cloud_office_icon');
-          $Color = get_field('cloud_office_color');
+          if(is_array($atts) && isset($atts['title'])){
+                $MainCat = get_field('cloud_office_category');
+                // echo "<pre>";print_r($MainCat->post_name);die;
+                $Title = get_field('cloud_office__sub_cat_title');
+                $LinkText = get_field('cloud_office_sub_cat_link_text');
+                $Link = get_field('cloud_office_sub_cat_link');
+                $Icon = get_field('cloud_office_icon');
+                $Color = get_field('cloud_office_sub_cat_color');
+                if(isset($MainCat->post_name) && isset($atts['title']) && $MainCat->post_name == $atts['title']){
+                    $content_html .='<div class="col-lg-3 col-md-4 col-sm-6">
+                    <article class="listing" style="color:'.$Color.';">
+                      <div class="img-list" style="background: '.$Color.';">
+                          <div class="post-thumbnail">
+                            <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'"></div>
+                            <h6 class="list-title mb-0">'.$Title.'</h6>                  
+                        </div>                                             
+                      </div>
+                      <div class="list-detail">
+                          <div class="list-s-icon"><a href="'.$Link.'" title="'.$LinkText.'"><i class="fa fa-search"></i></a></div>
+                          <h6 class="list-title mb-0">
+                            <a href="'.$Link.'" title="'.$LinkText.'">'.$LinkText.'</a>
+                          </h6>
+                      </div>
+                    </article>
+                  </div>';
+                }
+          }else{
+              $Title = get_field('cloud_office_title');
+              $LinkText = get_field('cloud_office_link_text');
+              $Link = get_field('cloud_office_link');
+              $Icon = get_field('cloud_office_icon');
+              $Color = get_field('cloud_office_color');
+              $content_html .='<div class="col-lg-3 col-md-4 col-sm-6">
+              <article class="listing" style="color:'.$Color.';">
+                <div class="img-list" style="background: '.$Color.';">
+                    <div class="post-thumbnail">
+                      <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'"></div>
+                      <h6 class="list-title mb-0">'.$Title.'</h6>                  
+                  </div>                                             
+                </div>
+                <div class="list-detail">
+                    <div class="list-s-icon"><a href="'.$Link.'" title="'.$LinkText.'"><i class="fa fa-search"></i></a></div>
+                    <h6 class="list-title mb-0">
+                      <a href="'.$Link.'" title="'.$LinkText.'">'.$LinkText.'</a>
+                    </h6>
+                </div>
+              </article>
+            </div>';
+          }
             //   $featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
             //   $product_image1 = $featured_image[0];
-
           // Output
-          $content_html .='<div class="col-lg-3 col-md-4 col-sm-6">
-          <article class="listing" style="color:'.$Color.';">
-            <div class="img-list" style="background: '.$Color.';">
-                <div class="post-thumbnail">
-                  <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'"></div>
-                  <h6 class="list-title mb-0">'.$Title.'</h6>                  
-              </div>                                             
-            </div>
-            <div class="list-detail">
-                <div class="list-s-icon"><a href="'.$Link.'" title="'.$LinkText.'"><i class="fa fa-search"></i></a></div>
-                <h6 class="list-title mb-0">
-                  <a href="'.$Link.'" title="'.$LinkText.'">'.$LinkText.'</a>
-                </h6>
-            </div>
-          </article>
-        </div>';
         
           endwhile;
         wp_reset_postdata();
