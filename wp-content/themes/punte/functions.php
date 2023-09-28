@@ -585,3 +585,63 @@ function xp_local_pos_list() {
     }
     // register shortcode
 add_shortcode('local_pos', 'xp_local_pos_list');
+
+// function for Cloud Office listing
+function xp_cloud_office_list($atts) { 
+    // print_r($atts);die;
+    if(is_array($atts) && isset($atts['title'])){
+        $queryArgs = [
+            'post_type'         => 'cloud_office_sub_cat',
+            'post_status'       => 'publish',
+            'posts_per_page' => -1,
+            'order'         => 'ASC',
+        ];
+    }else{
+        $queryArgs = [
+            'post_type'         => 'cloud_office_cat',
+            'post_status'       => 'publish',
+            'posts_per_page' => -1,
+            'order'         => 'ASC',
+        ];        
+    }
+    // SQL query will be executed during this line 
+    $posts = new WP_Query($queryArgs);
+    $content_html = '<div class="article-list"><div class="row">';
+    if ( $posts->have_posts() ) :
+        while ( $posts->have_posts() ) : $posts->the_post();
+          // Set variables
+          $Title = get_field('cloud_office_title');
+          $LinkText = get_field('cloud_office_link_text');
+          $Link = get_field('cloud_office_link');
+          $Icon = get_field('cloud_office_icon');
+          $Color = get_field('cloud_office_color');
+            //   $featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+            //   $product_image1 = $featured_image[0];
+
+          // Output
+          $content_html .='<div class="col-lg-3 col-md-4 col-sm-6">
+          <article class="listing" style="color:'.$Color.';">
+            <div class="img-list" style="background: '.$Color.';">
+                <div class="post-thumbnail">
+                  <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'"></div>
+                  <h6 class="list-title mb-0">'.$Title.'</h6>                  
+              </div>                                             
+            </div>
+            <div class="list-detail">
+                <div class="list-s-icon"><a href="'.$Link.'" title="'.$LinkText.'"><i class="fa fa-search"></i></a></div>
+                <h6 class="list-title mb-0">
+                  <a href="'.$Link.'" title="'.$LinkText.'">'.$LinkText.'</a>
+                </h6>
+            </div>
+          </article>
+        </div>';
+        
+          endwhile;
+        wp_reset_postdata();
+        $content_html .= '</div></div>';
+      endif;
+
+    return $content_html;
+    }
+    // register shortcode
+add_shortcode('cloud_office', 'xp_cloud_office_list');
