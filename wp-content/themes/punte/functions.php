@@ -540,14 +540,10 @@ add_shortcode( 'subcategory', 'getSubCategory_func' );
 function xp_local_pos_list() { 
     
     $queryArgs = [
-        // your post type here 
         'post_type'         => 'local_pos',
-        // target post status 
         'post_status'       => 'publish',
-        // maximum amount of posts, use -1 to set unlimited 
         'posts_per_page' => -1,
-        // type of order 
-        'order'         => 'DESC',
+        'order'         => 'ASC',
     ];
     // SQL query will be executed during this line 
     $posts = new WP_Query($queryArgs);
@@ -564,26 +560,22 @@ function xp_local_pos_list() {
             //   $product_image1 = $featured_image[0];
 
           // Output
-          $content_html .='<div class="vc_col-sm-3 wow fadeIn animated animated" style="visibility: visible; animation-name: fadeIn;">
-          <article class="single-post list-view">
-            <div class="portfolio_custom">
-              <div class="col-md-12 post-thumbnail">
-                  <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'">
-                </div>
-              </div>
-              <div class="post-details col-md-10">
-                <h6 class="post-name">
-                  <a href="'.$Link.'" title="'.$Title.'">'.$Title.'</a>
+          $content_html .='<div class="col-lg-3 col-md-4 col-sm-6">
+          <article class="listing" style="color:'.$Color.';">
+            <div class="img-list" style="background: '.$Color.';">
+                <div class="post-thumbnail">
+                  <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'"></div>
+                  <h6 class="list-title mb-0">'.$Title.'</h6>                  
+              </div>                                             
+            </div>
+            <div class="list-detail">
+                <div class="list-s-icon"><a href="'.$Link.'" title="'.$LinkText.'"><i class="fa fa-search"></i></a></div>
+                <h6 class="list-title mb-0">
+                  <a href="'.$Link.'" title="'.$LinkText.'">'.$LinkText.'</a>
                 </h6>
-              </div>                 
-              <div class="post-search col-md-2"><a href="'.$Link.'" title="'.$Title.'"><i class="fa fa-search"></i></a></div>
             </div>
           </article>
         </div>';
-        //   $content_html .= '<div class="product"><img src='.$Icon.' alt="'.$Title.'><h2>'.$Title.'</h2><img src='.$Icon.' alt="product-detail" class="product-detail align-right">
-        //     '.$LinkText.'<p><a href='.$Link.' target="_blank" name="Spec Sheet">Download Spec Sheet</a></p>
-        //   </div>';
-          
           endwhile;
         wp_reset_postdata();
         $content_html .= '</div>';
