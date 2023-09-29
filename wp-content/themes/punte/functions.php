@@ -350,7 +350,7 @@ if(isset($_POST['loginfrm_submit']) && !empty(isset($_POST['loginfrm_submit'])))
     $_SESSION['user_login_error'] = "";
     // $userLogin = "shoprightadmin1";
     // $userPassword = "3br$7k";
-    $url = "http://betaapi.shopright.ky/api/data/SupportUserLogin";
+    $url = "https://centralinventoryapi.shopright.ky/api/data/SupportUserLogin";
     $response = wp_remote_post( $url, array(
         'method' => 'POST',
         'timeout' => 45,
