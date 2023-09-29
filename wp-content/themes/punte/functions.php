@@ -659,10 +659,7 @@ function xp_cloud_office_list($atts) {
               </article>
             </div>';
           }
-            //   $featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
-            //   $product_image1 = $featured_image[0];
-          // Output
-        
+                    
           endwhile;
         wp_reset_postdata();
         $content_html .= '</div></div>';
