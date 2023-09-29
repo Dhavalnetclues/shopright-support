@@ -350,7 +350,7 @@ if(isset($_POST['loginfrm_submit']) && !empty(isset($_POST['loginfrm_submit'])))
     $_SESSION['user_login_error'] = "";
     // $userLogin = "shoprightadmin1";
     // $userPassword = "3br$7k";
-    $url = "http://betaapi.shopright.ky/api/data/SupportUserLogin";
+    $url = "https://centralinventoryapi.shopright.ky/api/data/SupportUserLogin";
     $response = wp_remote_post( $url, array(
         'method' => 'POST',
         'timeout' => 45,
@@ -540,14 +540,10 @@ add_shortcode( 'subcategory', 'getSubCategory_func' );
 function xp_local_pos_list() { 
     
     $queryArgs = [
-        // your post type here 
         'post_type'         => 'local_pos',
-        // target post status 
         'post_status'       => 'publish',
-        // maximum amount of posts, use -1 to set unlimited 
         'posts_per_page' => -1,
-        // type of order 
-        'order'         => 'DESC',
+        'order'         => 'ASC',
     ];
     // SQL query will be executed during this line 
     $posts = new WP_Query($queryArgs);
@@ -564,26 +560,22 @@ function xp_local_pos_list() {
             //   $product_image1 = $featured_image[0];
 
           // Output
-          $content_html .='<div class="vc_col-sm-3 wow fadeIn animated animated" style="visibility: visible; animation-name: fadeIn;">
-          <article class="single-post list-view">
-            <div class="portfolio_custom">
-              <div class="col-md-12 post-thumbnail">
-                  <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'">
-                </div>
-              </div>
-              <div class="post-details col-md-10">
-                <h6 class="post-name">
-                  <a href="'.$Link.'" title="'.$Title.'">'.$Title.'</a>
+          $content_html .='<div class="col-lg-3 col-md-4 col-sm-6">
+          <article class="listing" style="color:'.$Color.';">
+            <div class="img-list" style="background: '.$Color.';">
+                <div class="post-thumbnail">
+                  <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'"></div>
+                  <h6 class="list-title mb-0">'.$Title.'</h6>                  
+              </div>                                             
+            </div>
+            <div class="list-detail">
+                <div class="list-s-icon"><a href="'.$Link.'" title="'.$LinkText.'"><i class="fa fa-search"></i></a></div>
+                <h6 class="list-title mb-0">
+                  <a href="'.$Link.'" title="'.$LinkText.'">'.$LinkText.'</a>
                 </h6>
-              </div>                 
-              <div class="post-search col-md-2"><a href="'.$Link.'" title="'.$Title.'"><i class="fa fa-search"></i></a></div>
             </div>
           </article>
         </div>';
-        //   $content_html .= '<div class="product"><img src='.$Icon.' alt="'.$Title.'><h2>'.$Title.'</h2><img src='.$Icon.' alt="product-detail" class="product-detail align-right">
-        //     '.$LinkText.'<p><a href='.$Link.' target="_blank" name="Spec Sheet">Download Spec Sheet</a></p>
-        //   </div>';
-          
           endwhile;
         wp_reset_postdata();
         $content_html .= '</div>';
@@ -593,3 +585,87 @@ function xp_local_pos_list() {
     }
     // register shortcode
 add_shortcode('local_pos', 'xp_local_pos_list');
+
+// function for Cloud Office listing
+function xp_cloud_office_list($atts) { 
+    // print_r($atts);die;
+    if(is_array($atts) && isset($atts['title'])){
+        $queryArgs = [
+            'post_type'         => 'cloud_office_sub_cat',
+            'post_status'       => 'publish',
+            'posts_per_page' => -1,
+            'order'         => 'ASC',
+        ];
+    }else{
+        $queryArgs = [
+            'post_type'         => 'cloud_office_cat',
+            'post_status'       => 'publish',
+            'posts_per_page' => -1,
+            'order'         => 'ASC',
+        ];        
+    }
+    // SQL query will be executed during this line 
+    $posts = new WP_Query($queryArgs);
+    $content_html = '<div class="article-list"><div class="row">';
+    if ( $posts->have_posts() ) :
+        while ( $posts->have_posts() ) : $posts->the_post();
+          // Set variables
+          if(is_array($atts) && isset($atts['title'])){
+                $MainCat = get_field('cloud_office_category');
+                // echo "<pre>";print_r($MainCat->post_name);die;
+                $Title = get_field('cloud_office__sub_cat_title');
+                $LinkText = get_field('cloud_office_sub_cat_link_text');
+                $Link = get_field('cloud_office_sub_cat_link');
+                $Icon = get_field('cloud_office_icon');
+                $Color = get_field('cloud_office_sub_cat_color');
+                if(isset($MainCat->post_name) && isset($atts['title']) && $MainCat->post_name == $atts['title']){
+                    $content_html .='<div class="col-lg-3 col-md-4 col-sm-6">
+                    <article class="listing" style="color:'.$Color.';">
+                      <div class="img-list" style="background: '.$Color.';">
+                          <div class="post-thumbnail">
+                            <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'"></div>
+                            <h6 class="list-title mb-0">'.$Title.'</h6>                  
+                        </div>                                             
+                      </div>
+                      <div class="list-detail">
+                          <div class="list-s-icon"><a href="'.$Link.'" title="'.$LinkText.'"><i class="fa fa-search"></i></a></div>
+                          <h6 class="list-title mb-0">
+                            <a href="'.$Link.'" title="'.$LinkText.'">'.$LinkText.'</a>
+                          </h6>
+                      </div>
+                    </article>
+                  </div>';
+                }
+          }else{
+              $Title = get_field('cloud_office_title');
+              $LinkText = get_field('cloud_office_link_text');
+              $Link = get_field('cloud_office_link');
+              $Icon = get_field('cloud_office_icon');
+              $Color = get_field('cloud_office_color');
+              $content_html .='<div class="col-lg-3 col-md-4 col-sm-6">
+              <article class="listing" style="color:'.$Color.';">
+                <div class="img-list" style="background: '.$Color.';">
+                    <div class="post-thumbnail">
+                      <div class="relative"><img class="portfolio_post_image" src="'.$Icon.'" alt="'.$Title.'"></div>
+                      <h6 class="list-title mb-0">'.$Title.'</h6>                  
+                  </div>                                             
+                </div>
+                <div class="list-detail">
+                    <div class="list-s-icon"><a href="'.$Link.'" title="'.$LinkText.'"><i class="fa fa-search"></i></a></div>
+                    <h6 class="list-title mb-0">
+                      <a href="'.$Link.'" title="'.$LinkText.'">'.$LinkText.'</a>
+                    </h6>
+                </div>
+              </article>
+            </div>';
+          }
+                    
+          endwhile;
+        wp_reset_postdata();
+        $content_html .= '</div></div>';
+      endif;
+
+    return $content_html;
+    }
+    // register shortcode
+add_shortcode('cloud_office', 'xp_cloud_office_list');
