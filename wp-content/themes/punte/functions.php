@@ -547,7 +547,7 @@ function xp_local_pos_list() {
     ];
     // SQL query will be executed during this line 
     $posts = new WP_Query($queryArgs);
-    $content_html = '<div class="row">';
+    $content_html = '<div class="article-list"><div class="row">';
     if ( $posts->have_posts() ) :
         while ( $posts->have_posts() ) : $posts->the_post();
           // Set variables
@@ -578,7 +578,7 @@ function xp_local_pos_list() {
         </div>';
           endwhile;
         wp_reset_postdata();
-        $content_html .= '</div>';
+        $content_html .= '</div></div>';
       endif;
 
     return $content_html;
