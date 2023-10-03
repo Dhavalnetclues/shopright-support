@@ -1,9 +1,16 @@
 <?php
-if ( ! defined('ABSPATH')) exit;  // if direct access
+if (!defined('ABSPATH')) exit;  // if direct access
+
+
+//remove_filter('post_grid_settings_tabs', 'post_grid_pro_settings_tabs', 90);
+//remove_action('post_grid_settings_content_license', 'post_grid_settings_content_license', 10);
+//remove_action('post_grid_settings_save', 'post_grid_pro_settings_save');
+
 
 add_action('post_grid_settings_content_general', 'post_grid_settings_content_general');
 
-function post_grid_settings_content_general(){
+function post_grid_settings_content_general()
+{
     $settings_tabs_field = new settings_tabs_field();
 
     $post_grid_settings = get_option('post_grid_settings');
@@ -12,52 +19,55 @@ function post_grid_settings_content_general(){
     $post_grid_preview = isset($post_grid_settings['post_grid_preview']) ? $post_grid_settings['post_grid_preview'] : 'yes';
     $post_options_post_types = isset($post_grid_settings['post_options_post_types']) ? $post_grid_settings['post_options_post_types'] : array();
 
-    //echo '<pre>'.var_export($post_grid_settings, true).'</pre>';
     $posttypes_array = post_grid_posttypes_array();
 
-    ?>
+?>
     <div class="section">
         <div class="section-title"><?php echo __('General', 'post-grid'); ?></div>
         <p class="description section-description"><?php echo __('Choose some general options.', 'post-grid'); ?></p>
 
         <?php
 
+
+
+
+
         $args = array(
-            'id'		=> 'post_options_post_types',
-            'parent'		=> 'post_grid_settings',
-            'title'		=> __('Post option by post types','post-grid'),
-            'details'	=> __('Enable post options for selected post types','post-grid'),
-            'type'		=> 'select',
-            'value'		=> $post_options_post_types,
-            'default'		=> array(),
-            'multiple'		=> true,
-            'args'		=> $posttypes_array,
+            'id'        => 'post_options_post_types',
+            'parent'        => 'post_grid_settings',
+            'title'        => __('Post option by post types', 'post-grid'),
+            'details'    => __('Enable post options for selected post types', 'post-grid'),
+            'type'        => 'select',
+            'value'        => $post_options_post_types,
+            'default'        => array(),
+            'multiple'        => true,
+            'args'        => $posttypes_array,
         );
 
         $settings_tabs_field->generate_field($args);
 
         $args = array(
-            'id'		=> 'font_aw_version',
-            'parent'		=> 'post_grid_settings',
-            'title'		=> __('Font-awesome version','post-grid'),
-            'details'	=> __('Choose font awesome version you want to load.','post-grid'),
-            'type'		=> 'select',
-            'value'		=> $font_aw_version,
-            'default'		=> '',
-            'args'		=> array('v_5'=>__('Version 5+','post-grid'), 'v_4'=>__('Version 4+','post-grid'), 'none'=>__('None','post-grid')  ),
+            'id'        => 'font_aw_version',
+            'parent'        => 'post_grid_settings',
+            'title'        => __('Font-awesome version', 'post-grid'),
+            'details'    => __('Choose font awesome version you want to load.', 'post-grid'),
+            'type'        => 'select',
+            'value'        => $font_aw_version,
+            'default'        => '',
+            'args'        => array('v_5' => __('Version 5+', 'post-grid'), 'v_4' => __('Version 4+', 'post-grid'), 'none' => __('None', 'post-grid')),
         );
 
         $settings_tabs_field->generate_field($args);
 
         $args = array(
-            'id'		=> 'post_grid_preview',
-            'parent'		=> 'post_grid_settings',
-            'title'		=> __('Enable post grid preview','post-grid'),
-            'details'	=> __('You can enable preview post grid.','post-grid'),
-            'type'		=> 'select',
-            'value'		=> $post_grid_preview,
-            'default'		=> 'yes',
-            'args'		=> array('yes'=>__('Yes','post-grid'), 'no'=>__('No','post-grid')  ),
+            'id'        => 'post_grid_preview',
+            'parent'        => 'post_grid_settings',
+            'title'        => __('Enable post grid preview', 'post-grid'),
+            'details'    => __('You can enable preview post grid.', 'post-grid'),
+            'type'        => 'select',
+            'value'        => $post_grid_preview,
+            'default'        => 'yes',
+            'args'        => array('yes' => __('Yes', 'post-grid'), 'no' => __('No', 'post-grid')),
         );
 
         $settings_tabs_field->generate_field($args);
@@ -81,25 +91,25 @@ function post_grid_settings_content_general(){
 
 add_action('post_grid_settings_content_help_support', 'post_grid_settings_content_help_support');
 
-if(!function_exists('post_grid_settings_content_help_support')) {
-    function post_grid_settings_content_help_support($tab){
+if (!function_exists('post_grid_settings_content_help_support')) {
+    function post_grid_settings_content_help_support($tab)
+    {
 
         $settings_tabs_field = new settings_tabs_field();
 
         $layouts_pro_url = '';
         $layouts_pro_url_json = '';
 
-        if (is_plugin_active('post-grid-pro/post-grid-pro.php')){
-            $layouts_pro_url = post_grid_pro_plugin_url.'sample-data/post-grid-layouts.xml';
-            $layouts_pro_url_json = post_grid_pro_plugin_url.'sample-data/post-grid-layouts.json';
-
+        if (is_plugin_active('post-grid-pro/post-grid-pro.php')) {
+            $layouts_pro_url = post_grid_pro_plugin_url . 'sample-data/post-grid-layouts.xml';
+            $layouts_pro_url_json = post_grid_pro_plugin_url . 'sample-data/post-grid-layouts.json';
         }
 
-        $layouts_free_url = post_grid_plugin_url.'sample-data/post-grid-layouts.xml';
-        $layouts_free_url_json = post_grid_plugin_url.'sample-data/post-grid-layouts.json';
+        $layouts_free_url = post_grid_plugin_url . 'sample-data/post-grid-layouts.xml';
+        $layouts_free_url_json = post_grid_plugin_url . 'sample-data/post-grid-layouts.json';
 
 
-        ?>
+    ?>
         <div class="section">
             <div class="section-title"><?php echo __('Get support', 'post-grid'); ?></div>
             <p class="description section-description"><?php echo __('Use following to get help and support from our expert team.', 'post-grid'); ?></p>
@@ -111,7 +121,7 @@ if(!function_exists('post_grid_settings_content_help_support')) {
             ob_start();
             ?>
             <ul>
-                <li>Step - 1: Go to Tools > <a href="<?php echo esc_url_raw(admin_url().'export.php'); ?>">Export</a> menu.</li>
+                <li>Step - 1: Go to Tools > <a href="<?php echo esc_url(admin_url() . 'export.php'); ?>">Export</a> menu.</li>
                 <li>Step - 2: Choose "Layouts" post types from list.</li>
                 <li>Step - 3: Then click to "Download Export File' button.</li>
                 <li>Step - 4: Save the file on your local machine.</li>
@@ -122,12 +132,12 @@ if(!function_exists('post_grid_settings_content_help_support')) {
             $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'export_layouts',
+                'id'        => 'export_layouts',
                 //'parent'		=> '',
-                'title'		=> __('Export layouts','post-grid'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
+                'title'        => __('Export layouts', 'post-grid'),
+                'details'    => '',
+                'type'        => 'custom_html',
+                'html'        => $html,
 
             );
 
@@ -143,15 +153,12 @@ if(!function_exists('post_grid_settings_content_help_support')) {
             <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'post-grid'); ?></a>
 
             <p><?php echo __('Read our documentation before asking your question.', 'post-grid'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/documentation/post-grid/"><?php echo __('Documentation', 'post-grid'); ?></a>
+            <a class="button" href="https://getpostgrid.com/documentations/"><?php echo __('Documentation', 'post-grid'); ?></a>
 
             <p><?php echo __('Watch video tutorials.', 'post-grid'); ?></p>
             <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94Yut5Y0MSVg1wqmqWz0UYpt"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'post-grid'); ?></a>
 
-            <ul>
-                <li><i class="far fa-dot-circle"></i> <a href="https://youtu.be/YVtsIbEb9zs">Latest Version 2.0.46 Overview</a></li>
 
-            </ul>
 
 
 
@@ -160,12 +167,12 @@ if(!function_exists('post_grid_settings_content_help_support')) {
             $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'get_support',
+                'id'        => 'get_support',
                 //'parent'		=> '',
-                'title'		=> __('Ask question','post-grid'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
+                'title'        => __('Ask question', 'post-grid'),
+                'details'    => '',
+                'type'        => 'custom_html',
+                'html'        => $html,
 
             );
 
@@ -185,12 +192,12 @@ if(!function_exists('post_grid_settings_content_help_support')) {
             $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'reviews',
+                'id'        => 'reviews',
                 //'parent'		=> '',
-                'title'		=> __('Submit reviews','post-grid'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
+                'title'        => __('Submit reviews', 'post-grid'),
+                'details'    => '',
+                'type'        => 'custom_html',
+                'html'        => $html,
 
             );
 
@@ -202,7 +209,7 @@ if(!function_exists('post_grid_settings_content_help_support')) {
 
 
         </div>
-        <?php
+    <?php
 
 
     }
@@ -211,636 +218,96 @@ if(!function_exists('post_grid_settings_content_help_support')) {
 
 
 
-add_action('post_grid_settings_content_templates', 'post_grid_settings_content_templates');
+add_action('post_grid_settings_content_disable_blocks', 'post_grid_settings_content_disable_blocks');
 
-if(!function_exists('post_grid_settings_content_templates')) {
-    function post_grid_settings_content_templates($tab){
-
-        $settings_tabs_field = new settings_tabs_field();
-
-        ?>
-        <div class="section">
-            <div class="section-title"><?php echo __('Templates', 'post-grid'); ?></div>
-            <p class="description section-description"><?php echo __('Choose page templates for various page.', 'post-grid'); ?></p>
-
-            <?php
-
-
-
-
-            ?>
-
-
-        </div>
-        <?php
-
-
-    }
-}
-
-
-
-
-add_action('post_grid_settings_content_buy_pro', 'post_grid_settings_content_buy_pro');
-
-if(!function_exists('post_grid_settings_content_buy_pro')) {
-    function post_grid_settings_content_buy_pro($tab){
+if (!function_exists('post_grid_settings_content_disable_blocks')) {
+    function post_grid_settings_content_disable_blocks($tab)
+    {
 
         $settings_tabs_field = new settings_tabs_field();
+        $post_grid_settings = get_option('post_grid_settings');
 
-
-        ?>
+        $disable_blocks = isset($post_grid_settings['disable_blocks']) ? $post_grid_settings['disable_blocks'] : [];
+    ?>
         <div class="section">
-            <div class="section-title"><?php echo __('Get Premium', 'post-grid'); ?></div>
-            <p class="description section-description"><?php echo __('Thanks for using our plugin, if you looking for some advance feature please buy premium version.', 'post-grid'); ?></p>
+            <div class="section-title"><?php echo __('Disable/Enable Blocks', 'post-grid'); ?></div>
+            <p class="description section-description text-lg"><?php echo __('Choose blocks to enable or disable', 'post-grid'); ?></p>
 
             <?php
 
+            $blocks_list = [
+                'post-grid/post-grid' => 'Post Grid',
+                'post-grid/post-grid-filterable' => 'Post grid filterable',
+                'post-grid/content-slider' => 'content-slider',
+                'post-grid/content-slider-item' => 'content-slider-item',
+                'post-grid/popup' => 'popup',
+                'post-grid/post-title' => 'Post title',
+                'post-grid/post-excerpt' => 'Post excerpt',
+                'post-grid/post-featured-image' => 'Post featured image',
+                'post-grid/image' => 'Image',
+                'post-grid/post-author' => 'Post author',
+                'post-grid/post-author-fields' => 'Post author fields',
+                'post-grid/post-categories' => 'Post categories',
+                'post-grid/post-tags' => 'Post tags',
+                'post-grid/post-taxonomies' => 'Post taxonomies',
+                'post-grid/post-date' => 'Post date',
+                'post-grid/post-meta' => 'Post meta',
+                'post-grid/read-more' => 'Read more',
+                'post-grid/post-comment-count' => 'Post Comment Count',
+
+                'post-grid/progress-bar' => 'Progress Bar',
+                'post-grid/form-wrap' => 'Form Wrap',
+                'post-grid/form-field-input' => 'Form Field Input',
+                'post-grid/form-field-select' => 'Form Field Select',
+                'post-grid/form-field-checkbox' => 'Form Field Checkbox',
+                'post-grid/form-field-radio' => 'Form Field Radio',
+                'post-grid/form-field-textarea' => 'Form Field Textarea',
+                'post-grid/form-field-submit' => 'Form Field Submit',
+                'post-grid/form-field-file-multi' => 'Form Field File Multi',
+                'post-grid/form-field-file' => 'Form Field File',
+
+                'post-grid/list' => 'List',
+                'post-grid/number-counter' => 'Number Counter',
+                'post-grid/icon' => 'Icon',
+                'post-grid/text' => 'Text',
+
+                'post-grid/star-rate' => 'Star Rate',
+                'post-grid/breadcrumb' => 'Breadcrumb',
+                'post-grid/shortcode' => 'Shortcode',
+                'post-grid/social-share' => 'Social Share',
+                'post-grid/terms-list' => 'Terms List',
+                'post-grid/layers' => 'Layers',
+                'post-grid/layer' => 'Layer',
+
+                'post-grid/flex-wrap' => 'Flex Wrap',
+                'post-grid/flex-wrap-item' => 'Flex Wrap Item',
+                'post-grid/grid-wrap' => 'Grid Wrap',
+                'post-grid/grid-wrap-item' => 'Grid Wrap Item',
+                'post-grid/image-gallery' => 'Image Gallery',
+                'post-grid/image-gallery-item' => 'image Gallery Item',
+                'post-grid/accordion-nested' => 'Accordion Nested',
+                'post-grid/accordion-nested-item' => 'Accordion Nested Item',
+                'post-grid/tabs-nested' => 'Tabs Nested',
+                'post-grid/tabs-nested-item' => 'Tabs Nested Item',
+                'post-grid/post' => 'Post',
+                'post-grid/accordion' => 'Accordion',
+                'post-grid/tabs' => 'Tabs',
+            ];
 
-            ob_start();
-            ?>
 
-            <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'post-grid'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/item/post-grid-create-awesome-grid-from-any-post-type-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'post-grid'); ?></a>
-            <a class="button" href="https://www.pickplugins.com/demo/post-grid/?ref=dashobard"><?php echo __('See all demo', 'post-grid'); ?></a>
 
-            <h2><?php echo __('See the differences','post-grid'); ?></h2>
-
-            <table class="pro-features">
-                <thead>
-                <tr>
-                    <th class="col-features"><?php echo __('Features','post-grid'); ?></th>
-                    <th class="col-free"><?php echo __('Free','post-grid'); ?></th>
-                    <th class="col-pro"><?php echo __('Premium','post-grid'); ?></th>
-                </tr>
-                </thead>
-
-                <tr>
-                    <td colspan="3" class="col-features">
-                        <h3><?php echo __('Post Query','post-grid'); ?></h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Lazy load','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Lazy load image source','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Container style','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Grid item width','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Grid item height','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Items background color','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Grid item margin','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Grid item padding','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-
-                <tr>
-                    <td class="col-features"><?php echo __('Masonry layout','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Custom Js','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Custom CSS','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-
-                <tr>
-                    <td colspan="3" class="col-features">
-                        <h3><?php echo __('Layouts library','post-grid'); ?></h3>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('5 free layouts','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('32 pro layouts','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('20+ elements','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Element - Custom meta field','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Element - Custom HTML','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Element - Taxonomy & terms','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-
-
-                <tr>
-                    <td colspan="3" class="col-features">
-                        <h3><?php echo __('Post Query','post-grid'); ?></h3>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Any post types','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Any taxonomies & terms','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Taxonomies relation','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Any post status','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Post query order','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Post query orderby','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Query orderby meta key','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Posts per page','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Offset','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Exclude by post ID','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Include by post ID','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Search parameter','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Meta field query','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Meta query relation','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Extra query parameter','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Permission parameters','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Sticky post query','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Date parameters','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Author parameters','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Password parameters','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Post grid for Archives','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-
-                <tr>
-                    <td colspan="3" class="col-features">
-                        <h3><?php echo __('View Types','post-grid'); ?></h3>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Normal Grid','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Filterable','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Glossary','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Carousel Slider','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Collapsible','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td colspan="3" class="col-features">
-                        <h3><?php echo __('Pagination Types','post-grid'); ?></h3>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Normal Pagination','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Ajax Pagination','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Next-Previous','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Filterable pagination','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Ajax Load More','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td colspan="3" class="col-features">
-                        <h3><?php echo __('Media Sources','post-grid'); ?></h3>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Featured Image','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('First images from content','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Empty thumbnail','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('First youtube video from content','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Custom youtube video','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('First vimeo video from content','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Custom vimeo video','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('First dailymotion video from content','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Custom dailymotion video','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('First MP3 from content','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Custom MP3','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('First SoundCloud from content','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Custom SoundCloud','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Custom Thumbnail','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Font Awesome','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Custom Video','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-
-
-
-
-
-
-
-
-                <tr>
-                    <td colspan="3" class="col-features">
-                        <h3><?php echo __('3rd Party Plugins','post-grid'); ?></h3>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('kk Star Ratings','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Like Button Rating','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Page Views Count','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Page Visit Counter','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Post Views Counter','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Simple Job Board','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('WP Job Manager','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('WCK - Custom Fields Creator','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Multi Rating','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Rate my Post','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Rating-Widget','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('WP-PostRatings','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('WP-PostViews','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Yasr – Yet Another Stars Rating','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('YITH - Add to Wishlist','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Advanced Custom Fields','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Easy Digital Download','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('WooCommerce','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('CMB2','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Custom Field Suite','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Events Manager','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Pods','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('The Events Calendar','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Event Organiser','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-
-
-
-
-
-
-
-
-
-                <tr>
-                    <th class="col-features"><?php echo __('Features','post-grid'); ?></th>
-                    <th class="col-free"><?php echo __('Free','post-grid'); ?></th>
-                    <th class="col-pro"><?php echo __('Premium','post-grid'); ?></th>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Buy now','post-grid'); ?></td>
-                    <td> </td>
-                    <td><a class="button" href="https://www.pickplugins.com/item/post-grid-create-awesome-grid-from-any-post-type-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'post-grid'); ?></a></td>
-                </tr>
-
-            </table>
-
-
-
-            <?php
-
-            $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'get_pro',
-                'title'		=> __('Get pro version','post-grid'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
-
+                'id'        => 'disable_blocks',
+                'parent'        => 'post_grid_settings',
+                'title'        => __('Disbale/Enable Blocks', 'post-grid'),
+                'details'    => __('Enable or disable blocks from here.', 'post-grid'),
+                'type'        => 'checkbox',
+                'value'        => $disable_blocks,
+                'default'        => array(),
+                'multiple'        => true,
+                'style'        => ['inline' => false],
+                'args'        => $blocks_list,
             );
 
             $settings_tabs_field->generate_field($args);
@@ -850,49 +317,18 @@ if(!function_exists('post_grid_settings_content_buy_pro')) {
 
 
         </div>
-
-        <style type="text/css">
-            .pro-features{
-                margin: 30px 0;
-                border-collapse: collapse;
-                border: 1px solid #ddd;
-            }
-            .pro-features th{
-                width: 120px;
-                background: #ddd;
-                padding: 10px;
-            }
-            .pro-features tr{
-            }
-            .pro-features td{
-                border-bottom: 1px solid #ddd;
-                padding: 10px 10px;
-                text-align: center;
-            }
-            .pro-features .col-features{
-                width: 230px;
-                text-align: left;
-            }
-
-            .pro-features .col-free{
-            }
-            .pro-features .col-pro{
-            }
-
-            .pro-features i.fas.fa-check {
-                color: #139e3e;
-                font-size: 16px;
-            }
-            .pro-features i.fas.fa-times {
-                color: #f00;
-                font-size: 17px;
-            }
-        </style>
-        <?php
+<?php
 
 
     }
 }
+
+
+
+
+
+
+
 
 
 
@@ -904,8 +340,13 @@ if(!function_exists('post_grid_settings_content_buy_pro')) {
 
 add_action('post_grid_settings_save', 'post_grid_settings_save');
 
-function post_grid_settings_save(){
+function post_grid_settings_save()
+{
 
     $post_grid_settings = isset($_POST['post_grid_settings']) ?  post_grid_recursive_sanitize_arr($_POST['post_grid_settings']) : array();
     update_option('post_grid_settings', $post_grid_settings);
+
+
+    $post_grid_license = isset($_POST['post_grid_license']) ?  post_grid_recursive_sanitize_arr($_POST['post_grid_license']) : array();
+    update_option('post_grid_license', $post_grid_license);
 }

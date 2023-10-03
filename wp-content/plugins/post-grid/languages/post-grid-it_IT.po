@@ -2212,7 +2212,7 @@ msgid "Submit reviews"
 msgstr ""
 
 #: includes/functions/functions-settings-hook.php:170
-msgid "Get Premium"
+msgid "Pre Order"
 msgstr ""
 
 #: includes/functions/functions-settings-hook.php:171

@@ -5,47 +5,47 @@
     <table>
         <tr>
             <td colspan="5">
-                <h3><?php echo $ticket->post_title; ?></h3>
+                <h3><?php echo esc_html( $ticket->post_title ); ?></h3>
             </td>
         </tr>
         <tr>
             <th>
-                <?php _e( 'ID', 'awesome-support' ); ?>
+                <?php esc_html_e( 'ID', 'awesome-support' ); ?>
             </th>
             <th>
-                <?php _e( 'Status', 'awesome-support' ); ?>
+                <?php esc_html_e( 'Status', 'awesome-support' ); ?>
             </th>
             <th>
-                <?php _e( 'Created by', 'awesome-support' ); ?>
+                <?php esc_html_e( 'Created by', 'awesome-support' ); ?>
             </th>
             <th>
-                <?php _e( 'Agent', 'awesome-support' ); ?>
+                <?php esc_html_e( 'Agent', 'awesome-support' ); ?>
             </th>
             <th>
-                <?php _e( 'Date', 'awesome-support' ); ?>
+                <?php esc_html_e( 'Date', 'awesome-support' ); ?>
             </th>
         </tr>
         <tr>
             <td>
-                #<?php echo $ticket->ID; ?>
+                #<?php echo esc_html( $ticket->ID ); ?>
             </td>
             <td>
                 <?php wpas_cf_display_status( 'status', $ticket->ID ); ?>
             </td>
             <td>
                 <?php $user = get_user_by( 'id', $ticket->post_author )->display_name; ?>
-                <?php echo $user; ?>
+                <?php echo esc_html( $user ); ?>
             </td>
             <td>
                 <?php
 
                     $agent_id = wpas_get_cf_value( 'assignee', $ticket->ID );
-                    echo get_user_by( 'id', $agent_id )->display_name;
+                    echo esc_html( get_user_by( 'id', $agent_id )->display_name );
 
                 ?>
             </td>
             <td>
-                <?php echo date( get_option( 'date_format' ), strtotime( $ticket->post_date ) ) . ' ' . date( get_option( 'time_format' ), strtotime( $ticket->post_date ) ); ?>
+                <?php echo esc_html( date( get_option( 'date_format' ), strtotime( $ticket->post_date ) ) . ' ' . date( get_option( 'time_format' ), strtotime( $ticket->post_date ) ) ); ?>
             </td>
         </tr>
     </table>
@@ -53,13 +53,16 @@
     <table>
         <tr>
             <td>
-                <strong><?php echo $user; ?></strong>, 
-                <?php echo date( get_option( 'date_format' ), strtotime( $ticket->post_date ) ) . ' ' . date( get_option( 'time_format' ), strtotime( $ticket->post_date ) ); ?>
+                <strong><?php echo esc_html( $user ); ?></strong>,
+                <?php echo esc_html( date( get_option( 'date_format' ), strtotime( $ticket->post_date ) ) . ' ' . date( get_option( 'time_format' ), strtotime( $ticket->post_date ) ) ); ?>
             </td>
         </tr>
         <tr>
             <td>
-                <?php echo $ticket->post_content; ?>
+                <?php 
+					echo wp_kses_post( $ticket->post_content );
+                    do_action( 'wpas_backend_reply_content_after_with_image', $ticket->ID );
+                ?>
             </td>
         </tr>
     </table>
@@ -69,15 +72,22 @@
 
         <?php foreach ($replies as $reply): ?>
 
-            <?php 
-            
+            <?php
+
             // Set the author data (if author is known)
             if ( $reply->post_author != 0 ) {
                 $user_data = get_userdata( $reply->post_author );
-                $user_id   = $user_data->data->ID;
-                $user_name = $user_data->data->display_name;
+                if( $user_data && !empty( $user_data ) )
+				{
+					$user_id   = $user_data->data->ID;
+					$user_name = $user_data->data->display_name;
+				}
+				else
+				{
+					$user_name = __( 'Anonymous', 'awesome-support' );
+					$user_id   = 0;
+				}			
             }
-
             // In case the post author is unknown, we set this as an anonymous post
             else {
                 $user_name = __( 'Anonymous', 'awesome-support' );
@@ -91,13 +101,13 @@
                 <table class="wpas-print-ticket-history" style="display:none;">
                     <tr>
                         <td>
-                            <strong><?php echo $user_name; ?></strong>, 
-                            <?php echo date( get_option( 'date_format' ), strtotime( $reply->post_date ) ) . ' ' . date( get_option( 'time_format' ), strtotime( $reply->post_date ) ); ?>
+                            <strong><?php echo esc_html( $user_name ); ?></strong>,
+                            <?php echo esc_html( date( get_option( 'date_format' ), strtotime( $reply->post_date ) ) . ' ' . date( get_option( 'time_format' ), strtotime( $reply->post_date ) ) ); ?>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <?php echo $reply->post_content; ?>
+                            <?php echo wp_kses_post( $reply->post_content ); ?>
                         </td>
                     </tr>
                 </table>
@@ -107,9 +117,9 @@
                 <table class="<?php echo ( $reply->post_type == 'ticket_note' ) ? 'wpas-print-ticket-notes' : 'wpas-print-ticket-reply'; ?>">
                     <tr>
                         <td>
-                            <strong><?php echo $user_name; ?></strong>, 
-                            <?php echo date( get_option( 'date_format' ), strtotime( $reply->post_date ) ) . ' ' . date( get_option( 'time_format' ), strtotime( $reply->post_date ) ); ?>
-                            <?php if ( $reply->post_type == 'ticket_note' ) printf( ' - <strong>%s</strong>', __( 'Private note', 'awesome-support' ) ); ?>
+                            <strong><?php echo esc_html( $user_name ); ?></strong>,
+                            <?php echo esc_html( date( get_option( 'date_format' ), strtotime( $reply->post_date ) ) . ' ' . date( get_option( 'time_format' ), strtotime( $reply->post_date ) ) ); ?>
+                            <?php if ( $reply->post_type == 'ticket_note' ) printf( ' - <strong>%s</strong>', esc_html__( 'Private note', 'awesome-support' ) ); ?>
                         </td>
                     </tr>
                     <tr>
@@ -122,14 +132,14 @@
 
                                 echo wp_kses( $content, wp_kses_allowed_html( 'post' ) );
 
-                                do_action( 'wpas_backend_reply_content_after', $reply->ID );
+                                do_action( 'wpas_backend_reply_content_after_with_image', $reply->ID );
 
                             ?>
                         </td>
                     </tr>
                 </table>
 
-                
+
             <?php endif; ?>
 
         <?php endforeach; ?>

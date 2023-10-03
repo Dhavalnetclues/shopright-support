@@ -227,7 +227,7 @@ function post_grid_layout_element_option_simplejobboard_location($parameters){
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -285,7 +285,7 @@ function post_grid_layout_element_simplejobboard_location($args){
         $term_name = isset($term->name) ? $term->name : '';
         $term_link = get_term_link($term_id);
 
-        $categories_html .= '<a target="'.esc_attr($link_target).'" href="'.esc_url_raw($term_link).'">'.esc_html($term_name).'</a>';
+        $categories_html .= '<a target="'.esc_attr($link_target).'" href="'.esc_url($term_link).'">'.esc_html($term_name).'</a>';
         if( $i+1 < $max_term_limit){ $categories_html .= $separator;}
 
         $i++;
@@ -294,7 +294,7 @@ function post_grid_layout_element_simplejobboard_location($args){
 
     ?>
     <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> categories ">
-        <?php echo sprintf($wrapper_html, $categories_html); ?>
+        <?php echo esc_html(sprintf($wrapper_html, $categories_html)); ?>
     </div>
     <?php
 }
@@ -322,40 +322,40 @@ function post_grid_layout_element_css_simplejobboard_location($args){
     $css_hover = isset($element['css_hover']) ? $element['css_hover'] : '';
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($text_color)): ?>
-            color: <?php echo $text_color; ?>;
+            color: <?php echo esc_attr($text_color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?> a{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?> a{
         <?php if(!empty($link_color)): ?>
-            color: <?php echo $link_color; ?>;
+            color: <?php echo esc_attr($link_color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>
@@ -560,7 +560,7 @@ function post_grid_layout_element_option_simplejobboard_category($parameters){
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -618,7 +618,7 @@ function post_grid_layout_element_simplejobboard_category($args){
         $term_name = isset($term->name) ? $term->name : '';
         $term_link = get_term_link($term_id);
 
-        $categories_html .= '<a target="'.esc_attr($link_target).'" href="'.esc_url_raw($term_link).'">'.esc_html($term_name).'</a>';
+        $categories_html .= '<a target="'.esc_attr($link_target).'" href="'.esc_url($term_link).'">'.esc_html($term_name).'</a>';
         if( $i+1 < $max_term_limit){ $categories_html .= $separator;}
 
         $i++;
@@ -627,7 +627,7 @@ function post_grid_layout_element_simplejobboard_category($args){
 
     ?>
     <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> categories ">
-        <?php echo sprintf($wrapper_html, $categories_html); ?>
+        <?php echo esc_html(sprintf($wrapper_html, $categories_html)); ?>
     </div>
     <?php
 }
@@ -655,40 +655,40 @@ function post_grid_layout_element_css_simplejobboard_category($args){
     $css_hover = isset($element['css_hover']) ? $element['css_hover'] : '';
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($text_color)): ?>
-            color: <?php echo $text_color; ?>;
+            color: <?php echo esc_attr($text_color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?> a{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?> a{
         <?php if(!empty($link_color)): ?>
-            color: <?php echo $link_color; ?>;
+            color: <?php echo esc_attr($link_color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>
@@ -894,7 +894,7 @@ function post_grid_layout_element_option_simplejobboard_job_type($parameters){
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -952,7 +952,7 @@ function post_grid_layout_element_simplejobboard_job_type($args){
         $term_name = isset($term->name) ? $term->name : '';
         $term_link = get_term_link($term_id);
 
-        $categories_html .= '<a target="'.esc_attr($link_target).'" href="'.esc_url_raw($term_link).'">'.esc_html($term_name).'</a>';
+        $categories_html .= '<a target="'.esc_attr($link_target).'" href="'.esc_url($term_link).'">'.esc_html($term_name).'</a>';
         if( $i+1 < $max_term_limit){ $categories_html .= $separator;}
 
         $i++;
@@ -961,7 +961,7 @@ function post_grid_layout_element_simplejobboard_job_type($args){
 
     ?>
     <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> categories ">
-        <?php echo sprintf($wrapper_html, $categories_html); ?>
+        <?php echo esc_html(sprintf($wrapper_html, $categories_html)); ?>
     </div>
     <?php
 }
@@ -989,40 +989,40 @@ function post_grid_layout_element_css_simplejobboard_job_type($args){
     $css_hover = isset($element['css_hover']) ? $element['css_hover'] : '';
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($text_color)): ?>
-            color: <?php echo $text_color; ?>;
+            color: <?php echo esc_attr($text_color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?> a{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?> a{
         <?php if(!empty($link_color)): ?>
-            color: <?php echo $link_color; ?>;
+            color: <?php echo esc_attr($link_color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>
@@ -1185,7 +1185,7 @@ function post_grid_layout_element_option_simplejobboard_company_name($parameters
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -1235,7 +1235,7 @@ function post_grid_layout_element_simplejobboard_company_name($args){
 
         ?>
         <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> simplejobboard_company_name ">
-            <?php echo ($meta_value); ?>
+            <?php echo esc_html($meta_value); ?>
         </div>
     <?php
     endif;
@@ -1263,29 +1263,29 @@ function post_grid_layout_element_css_simplejobboard_company_name($args){
 
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($color)): ?>
-            color: <?php echo $color; ?>;
+            color: <?php echo esc_attr($color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>
@@ -1446,7 +1446,7 @@ function post_grid_layout_element_option_simplejobboard_company_website($paramet
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -1496,7 +1496,7 @@ function post_grid_layout_element_simplejobboard_company_website($args){
 
         ?>
         <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> simplejobboard_company_website ">
-            <?php echo ($meta_value); ?>
+            <?php echo esc_html($meta_value); ?>
         </div>
     <?php
     endif;
@@ -1524,29 +1524,29 @@ function post_grid_layout_element_css_simplejobboard_company_website($args){
 
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($color)): ?>
-            color: <?php echo $color; ?>;
+            color: <?php echo esc_attr($color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>
@@ -1708,7 +1708,7 @@ function post_grid_layout_element_option_simplejobboard_company_tagline($paramet
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -1758,7 +1758,7 @@ function post_grid_layout_element_simplejobboard_company_tagline($args){
 
         ?>
         <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> simplejobboard_company_tagline ">
-            <?php echo ($meta_value); ?>
+            <?php echo esc_html($meta_value); ?>
         </div>
     <?php
     endif;
@@ -1786,29 +1786,29 @@ function post_grid_layout_element_css_simplejobboard_company_tagline($args){
 
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($color)): ?>
-            color: <?php echo $color; ?>;
+            color: <?php echo esc_attr($color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>
@@ -1970,7 +1970,7 @@ function post_grid_layout_element_option_simplejobboard_job_expires($parameters)
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -2021,7 +2021,7 @@ function post_grid_layout_element_simplejobboard_job_expires($args){
 
         ?>
         <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> simplejobboard_job_expires ">
-            <?php echo ($meta_value); ?>
+            <?php echo esc_html($meta_value); ?>
         </div>
     <?php
     endif;
@@ -2049,29 +2049,29 @@ function post_grid_layout_element_css_simplejobboard_job_expires($args){
 
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($color)): ?>
-            color: <?php echo $color; ?>;
+            color: <?php echo esc_attr($color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>
@@ -2246,7 +2246,7 @@ function post_grid_layout_element_option_simplejobboard_job_feature($parameters)
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -2310,7 +2310,7 @@ function post_grid_layout_element_simplejobboard_job_feature($args){
 
         ?>
         <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> simplejobboard_job_feature ">
-            <?php echo ($meta_value); ?>
+            <?php echo esc_html($meta_value); ?>
         </div>
     <?php
     endif;
@@ -2338,29 +2338,29 @@ function post_grid_layout_element_css_simplejobboard_job_feature($args){
 
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($color)): ?>
-            color: <?php echo $color; ?>;
+            color: <?php echo esc_attr($color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>
@@ -2521,7 +2521,7 @@ function post_grid_layout_element_option_simplejobboard_company_logo($parameters
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -2575,7 +2575,7 @@ function post_grid_layout_element_simplejobboard_company_logo($args){
 
         ?>
         <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> simplejobboard_company_logo ">
-            <?php echo ($meta_value); ?>
+            <?php echo esc_html($meta_value); ?>
         </div>
     <?php
     endif;
@@ -2603,29 +2603,29 @@ function post_grid_layout_element_css_simplejobboard_company_logo($args){
 
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($color)): ?>
-            color: <?php echo $color; ?>;
+            color: <?php echo esc_attr($color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
         <?php if(!empty($font_family)): ?>
-            font-family: <?php echo $font_family; ?>;
+            font-family: <?php echo esc_attr($font_family); ?>;
         <?php endif; ?>
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>

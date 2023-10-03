@@ -20,10 +20,10 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /* Get the user role */
-$user_role = $user->roles[0];
+$user_role = isset( $user->roles[0] ) ? $user->roles[0] : null;
 ?>
 
-<tr id="reply-<?php echo the_ID(); ?>" class="wpas-reply-single wpas-status-<?php echo get_post_status(); ?> wpas_user_<?php echo $user_role; ?>" valign="top">
+<tr id="reply-<?php echo esc_attr( the_ID() ); ?>" class="wpas-reply-single wpas-status-<?php echo esc_attr( get_post_status() ); ?> wpas_user_<?php echo esc_attr( $user_role ); ?>" valign="top">
 
 	<?php
 	/**
@@ -31,7 +31,7 @@ $user_role = $user->roles[0];
 	 */
 	if ( 'trash' === get_post_status() ): ?>
 
-		<td colspan="2"><?php printf( esc_html__( 'This reply has been deleted %s ago.', 'awesome-support' ), $time_ago ); ?></td>
+		<td colspan="2"><?php printf( esc_html__( 'This reply has been deleted %s ago.', 'awesome-support' ), esc_html( $time_ago ) ); ?></td>
 
 	<?php else: ?>
 
@@ -49,7 +49,7 @@ $user_role = $user->roles[0];
 				<div class="wpas-reply-time">
 					<time class="wpas-timestamp" datetime="<?php echo get_the_date( 'Y-m-d\TH:i:s' ) . wpas_get_offset_html5(); ?>">
 						<span class="wpas-human-date"><?php echo get_the_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $post->ID ); ?></span>
-						<span class="wpas-date-ago"><?php printf( esc_html_x( '%s ago', 'Time ago (eg. 5 minutes ago)', 'awesome-support' ), $time_ago ); ?></span>
+						<span class="wpas-date-ago"><?php printf( esc_html_x( '%s ago', 'Time ago (eg. 5 minutes ago)', 'awesome-support' ), esc_html( $time_ago ) ); ?></span>
 					</time>
 				</div>
 			</div>
@@ -61,9 +61,24 @@ $user_role = $user->roles[0];
 			 * @since  3.0.0
 			 */
 			do_action( 'wpas_frontend_reply_content_before', get_the_ID() );
+			
+			/* Process missing html tag when pull content from email for ticket and ticket reply 11-5447420 */			
+			$content_reply = get_the_content();
+
+			/**
+			 * Filters the post content.
+			 *
+			 * @since 0.71
+			 *
+			 * @param string $content Content of the current post.
+			 */
+			$content_reply = apply_filters( 'the_content', $content_reply );
+			
+			$content_reply = str_replace( ']]>', ']]&gt;', $content_reply );
+	
 			?>
 
-			<div class="wpas-reply-content wpas-break-words"><?php the_content(); ?></div>
+			<div class="wpas-reply-content wpas-break-words ticket-reply"><?php echo force_balance_tags( $content_reply ); ?></div>
 
 			<?php
 			/**

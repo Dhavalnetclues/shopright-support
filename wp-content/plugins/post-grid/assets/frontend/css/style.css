@@ -1,39 +1,53 @@
 @charset "utf-8";
-/* CSS Document */
 
-.post-grid{
-	overflow:hidden;
+/* CSS Document */
+.post-grid * {
+  box-sizing: border-box
 }
-.post-grid .grid-items {
-  margin: 0 auto;
+
+.post-grid {
   overflow: hidden;
 }
-.post-grid .item {
-  background: rgb(255, 255, 255) none repeat scroll 0 0;
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-  word-break: break-word;
-  margin: 0 auto;
+
+.post-grid .grid-items {
+  /* margin: 0 auto; */
+  overflow: hidden;
 }
+
+.post-grid .item {
+
+  display: inline-block;
+  /* vertical-align: top;
+  position: relative; */
+  word-break: break-word;
+  /* margin: 0 auto; */
+}
+
 .post-grid .no-post-found {
   color: #999;
   text-align: center;
   font-size: 18px;
 }
+
 .post-grid .item .layer-media {
   line-height: 0;
 }
+
 .post-grid .item .layer-media img {
   border-radius: 0;
   box-shadow: none;
   width: 100%;
 }
+
 .post-grid .item .layer-media iframe {
   width: 100% !important;
   height: auto;
 }
 
+.post-grid .layer-wrapper img {
+  max-width: 100%;
+  height: auto;
+}
 
 /*navigation top*/
 
@@ -45,34 +59,36 @@
 
 /*post-grid-search*/
 
-.field-wrap{
+.field-wrap {
   display: inline-block;
   vertical-align: middle;
 }
 
-.field-wrap-keyword{
+.field-wrap-keyword {
   position: relative;
 }
 
-.post-grid  .post-grid-search{
+.post-grid .post-grid-search {
   display: block;
   padding: 10px 0;
   text-align: center;
 
 }
 
-.post-grid  .post-grid-search .keyword-wrap{
+.post-grid .post-grid-search .keyword-wrap {
   position: relative;
   display: inline-block;
 
 }
 
-.post-grid  .post-grid-search .search-loading{
+.post-grid .post-grid-search .search-loading {
   display: none;
 }
-.post-grid  .post-grid-search .search-loading.active{
+
+.post-grid .post-grid-search .search-loading.active {
   display: inline-block;
 }
+
 .post-grid .grid-nav-top .submit-search {
   background: #ddd none repeat scroll 0 0;
   cursor: pointer;
@@ -84,7 +100,7 @@
 }
 
 
-.post-grid .post-grid-search  .search {
+.post-grid .post-grid-search .search {
 
   border: 1px solid #ddd;
   border-radius: 0;
@@ -94,7 +110,7 @@
 }
 
 
-.post-grid .post-grid-search .search-icon{
+.post-grid .post-grid-search .search-icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -125,11 +141,16 @@
   margin: 30px 0;
   text-align: center;
 }
-.post-grid .pagination .current, .post-grid .pagination .pager.active {
+
+.post-grid .pagination .current,
+.post-grid .pagination .pager.active {
   opacity: 0.6;
 }
-.post-grid .pagination .page-numbers, .post-grid .pagination .pager, .post-grid .pagination .paginate.next-previous a{
-	
+
+.post-grid .pagination .page-numbers,
+.post-grid .pagination .pager,
+.post-grid .pagination .paginate.next-previous a {
+
   cursor: pointer;
   display: inline-block;
   font-size: 17px;
@@ -138,12 +159,15 @@
   padding: 7px 15px;
   text-decoration: none;
   color: rgb(255, 255, 255);
-	}
-.post-grid .pagination .page-numbers:hover, .post-grid .pagination .pager:hover{
-	/*opacity: 0.6;*/
-	}
+}
 
-.post-grid .pagination .prev  {}
+.post-grid .pagination .page-numbers:hover,
+.post-grid .pagination .pager:hover {
+  /*opacity: 0.6;*/
+}
+
+.post-grid .pagination .prev {}
+
 .post-grid .pagination .next {}
 
 
@@ -175,11 +199,9 @@
 }
 
 
-.post-grid .pagination .load-more.loading {
+.post-grid .pagination .load-more.loading {}
 
-}
-
-.post-grid .pagination .load-more.loading .load-more-spinner{
+.post-grid .pagination .load-more.loading .load-more-spinner {
   display: inline-block;
 }
 
@@ -191,15 +213,17 @@
 }
 
 /*paginate-ajax*/
-.post-grid .pagination .paginate-ajax{}
+.post-grid .pagination .paginate-ajax {}
 
-.post-grid .pagination .paginate-ajax .prev, .post-grid .pagination .paginate-ajax .next {
-	display: none;
+.post-grid .pagination .paginate-ajax .prev,
+.post-grid .pagination .paginate-ajax .next {
+  display: none;
 }
 
 
-.post-grid .pagination .paginate.next-previous{}
-.post-grid .pagination .paginate.next-previous a{}
+.post-grid .pagination .paginate.next-previous {}
+
+.post-grid .pagination .paginate.next-previous a {}
 
 
 
@@ -272,9 +296,7 @@
 }
 
 
-.layer-content .wc-center-price .wc_sale_price  {
-
-}
+.layer-content .wc-center-price .wc_sale_price {}
 
 
 /*################### wc-center-cart ########################*/
@@ -284,8 +306,69 @@
 }
 
 
-.layer-content .wc-center-cart .wc_sale_price  {
+.layer-content .wc-center-cart .wc_sale_price {}
 
+
+
+
+
+.circle-wrap {
+  margin: 150px auto;
+  width: 150px;
+  height: 150px;
+  background: #fefcff;
+  border-radius: 50%;
+  border: 1px solid #cdcbd0;
 }
 
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  border-radius: 50%;
+}
 
+.circle-wrap .circle .mask {
+  clip: rect(0px, 150px, 150px, 74px);
+}
+
+.circle-wrap .inside-circle {
+  width: 122px;
+  height: 122px;
+  border-radius: 50%;
+  background: #d2eaf1;
+  line-height: 120px;
+  text-align: center;
+  margin-top: 14px;
+  margin-left: 14px;
+  color: #1e51dc;
+  position: absolute;
+  z-index: 100;
+  font-weight: 700;
+  font-size: 2em;
+}
+
+/* color animation */
+
+/* 3rd progress bar */
+.mask .fill {
+  clip: rect(0px, 75px, 150px, 0px);
+  background-color: #227ded;
+}
+
+.mask.full,
+.circle .fill {
+  animation: fill ease-in-out 3s;
+  transform: rotate(135deg);
+}
+
+@keyframes fill {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(135deg);
+  }
+}

@@ -46,7 +46,7 @@ class WPAS_GDPR_User_Profile {
 		add_action( 'wp_ajax_nopriv_wpas_gdpr_export_data', array( $this, 'wpas_gdpr_export_data' ) );
 
 		add_action( 'init', array( $this, 'download_file' ) );
-		
+
 	}
 
 	/**
@@ -59,23 +59,28 @@ class WPAS_GDPR_User_Profile {
 
 		if ( isset( $_GET['file'] ) && isset( $_GET['check'] ) ) {
 			$nonce = ( ! empty( $_GET['check'] ) ) ? sanitize_text_field( $_GET['check'] ) : '';
-			if ( wp_verify_nonce( $nonce, 'as-validate-download-url' ) ) {
+			if ( wp_verify_nonce( $nonce, 'as-validate-download-url' )  && ( intval( $_GET['file'] ) == get_current_user_id() ) ) {
 				$user = intval( $_GET['file'] );
 				if ( ! $this->user_export_dir ) {
 					$this->user_export_dir = $this->set_log_dir( $user );
 				}
-				header( 'Content-Description: File Transfer' );
-				header( 'Content-type: application/zip' );
-				header( 'Content-Disposition: attachment; filename=exported-data.zip' );
-				header( 'Content-length: ' . filesize( $this->user_export_dir . '/exported-data.zip' ) );
-				header( 'Pragma: no-cache' );
-				header( 'Expires: 0' );
-				readfile( $this->user_export_dir . '/exported-data.zip' );
-				if (!unlink($this->user_export_dir . '/exported-data.zip') ){
-					return new WP_Error( 'file_deleting_error', __( 'Error deleting ' . $this->user_export_dir . '/exported-data.zip', 'awesome-support' ) );
+				if ( file_exists( $this->user_export_dir . '/exported-data.zip' ) ) {
+					header( 'Content-Description: File Transfer' );
+					header( 'Content-type: application/zip' );
+					header( 'Content-Disposition: attachment; filename=exported-data.zip' );
+					header( 'Content-length: ' . filesize( $this->user_export_dir . '/exported-data.zip' ) );
+					header( 'Pragma: no-cache' );
+					header( 'Expires: 0' );
+					readfile( $this->user_export_dir . '/exported-data.zip' );
+					if (!unlink($this->user_export_dir . '/exported-data.zip') ){
+						return new WP_Error( 'file_deleting_error', __( 'Error deleting ' . $this->user_export_dir . '/exported-data.zip', 'awesome-support' ) );
+					}
+					if (!unlink($this->user_export_dir . '/export-data.xml') ){
+						return new WP_Error( 'file_deleting_error', __( 'Error deleting ' . $this->user_export_dir . '/export-data.xml', 'awesome-support' ) );
+					}
 				}
-				if (!unlink($this->user_export_dir . '/export-data.xml') ){
-					return new WP_Error( 'file_deleting_error', __( 'Error deleting ' . $this->user_export_dir . '/export-data.xml', 'awesome-support' ) );
+				else {
+					return new WP_Error( 'security_error', __( 'Request not identified, Invalid request', 'awesome-support' ) );
 				}
 			} else {
 				return new WP_Error( 'security_error', __( 'Request not identified, Invalid request', 'awesome-support' ) );
@@ -118,7 +123,7 @@ class WPAS_GDPR_User_Profile {
 						$data_user = (int) $user_id;
 					?>
 					<h2><?php esc_html_e( 'Awesome Support: Data Export', 'awesome-support' ); ?></h2>
-					<input type="submit" name="wpas-gdpr-export-data-submit" id="wpas-gdpr-export-data-submit" data-user="<?php echo $data_user; ?>" class="button button-primary" value="<?php esc_attr_e( 'Export data', 'awesome-support' ); ?>">
+					<input type="submit" name="wpas-gdpr-export-data-submit" id="wpas-gdpr-export-data-submit" data-user="<?php echo esc_attr( $data_user ); ?>" class="button button-primary" value="<?php esc_attr_e( 'Export data', 'awesome-support' ); ?>">
 				</div>
 			</div>
 			<?php
@@ -131,7 +136,7 @@ class WPAS_GDPR_User_Profile {
 			if ( ! empty( $user_consent ) && is_array( $user_consent ) ) {
 	?>
 		<div id="wpas_user_profile_segment">
-			<h2><?php esc_html_e( 'Awesome Support: Consents Granted', 'awesome-support' ); ?></h2>		
+			<h2><?php esc_html_e( 'Awesome Support: Consents Granted', 'awesome-support' ); ?></h2>
 			<table class="form-table wp-list-table widefat fixed striped wpas-consent-history">
 				<thead>
 					<tr>
@@ -242,7 +247,7 @@ class WPAS_GDPR_User_Profile {
 					 * Loop the consent log
 					 */
 				foreach ( $consent_log as $log ) {
-					echo '<tr><td>' . $log . '</td></tr>';
+					echo '<tr><td>' . esc_html( $log ) . '</td></tr>';
 				}
 				?>
 			</table>
@@ -274,46 +279,50 @@ class WPAS_GDPR_User_Profile {
 		 * Security checking
 		 */
 		if ( ! empty( $nonce ) && check_ajax_referer( 'wpas-gdpr-nonce', 'security' ) ) {
+			if ((int) $user == get_current_user_id()) {
 
-			$user_tickets = $this->wpas_gdpr_ticket_data( $user );
-			$user_consent = $this->wpas_gdpr_consent_data( $user );
-			if ( ! empty( $user_consent ) || ! empty( $user_tickets ) ) {
-				/**
-				 * Put them in awesome-support/user_log_$user_id
-				 * folders in uploads dir. This has .htaccess protect to avoid
-				 * direct access
-				 */
-				$this->user_export_dir = $this->set_log_dir( $user );
+				$user_tickets = $this->wpas_gdpr_ticket_data( $user );
+				$user_consent = $this->wpas_gdpr_consent_data( $user );
+				if ( ! empty( $user_consent ) || ! empty( $user_tickets ) ) {
+					/**
+					 * Put them in awesome-support/user_log_$user_id
+					 * folders in uploads dir. This has .htaccess protect to avoid
+					 * direct access
+					 */
+					$this->user_export_dir = $this->set_log_dir( $user );
 
-				$content = array_merge(
-					array( 'ticket_data' => $user_tickets ),
-					array( 'consent_log' => $user_consent )
-				);
+					$content = array_merge(
+						array( 'ticket_data' => $user_tickets ),
+						array( 'consent_log' => $user_consent )
+					);
 
-				$data = apply_filters( 'wpas_gdpr_export_data_profile', $content, $user );
+					$data = apply_filters( 'wpas_gdpr_export_data_profile', $content, $user );
 
-				file_put_contents(
-					$this->user_export_dir . '/export-data.xml',
-					$this->xml_conversion( $data )
-				);
+					file_put_contents(
+						$this->user_export_dir . '/export-data.xml',
+						$this->xml_conversion( $data )
+					);
 
-				$this->data_zip( $user_tickets, 'export-data.xml', $this->user_export_dir );
+					$this->data_zip( $user_tickets, 'export-data.xml', $this->user_export_dir );
 
-				$upload_dir                     = wp_upload_dir();
-				$response['message']['success'] = sprintf(
-					'<p>%s. <a href="%s" target="_blank" class="download-file-link">%s</a></p>',
-					__( 'Exporting data was successful!', 'awesome-support' ),
-					add_query_arg(
-						array(
-							'file'  => $user,
-							'check' => wp_create_nonce( 'as-validate-download-url' ),
-						), home_url()
-					),
-					__( 'Download it now..', 'awesome-support' )
-				);
+					$upload_dir                     = wp_upload_dir();
+					$response['message']['success'] = sprintf(
+						'<p>%s. <a href="%s" target="_blank" class="download-file-link">%s</a></p>',
+						__( 'Exporting data was successful!', 'awesome-support' ),
+						add_query_arg(
+							array(
+								'file'  => $user,
+								'check' => wp_create_nonce( 'as-validate-download-url' ),
+							), home_url()
+						),
+						__( 'Download it now..', 'awesome-support' )
+					);
 
+				} else {
+					$response['message']['error'] = sprintf( '<p>%s.</p>', __( 'No data exist', 'awesome-support' ) );
+				}
 			} else {
-				$response['message']['error'] = sprintf( '<p>%s.</p>', __( 'No data exist', 'awesome-support' ) );
+				$response['message'] = __( 'Cheating huh?', 'awesome-support' );
 			}
 		} else {
 			$response['message'] = __( 'Cheating huh?', 'awesome-support' );
@@ -353,7 +362,7 @@ class WPAS_GDPR_User_Profile {
 			);
 		if( !empty( $paged ) ){
 			$args['paged'] = $paged;
-		} 
+		}
 
 		$ticket_data  = new WP_Query( $args );
 		$user_tickets = array();
@@ -567,7 +576,7 @@ class WPAS_GDPR_User_Profile {
 							$ticket_ids = array();
 							$ticket_ids[] = $ticket['ticket_id'];
 							foreach ( $ticket['replies'] as $key => $reply ) {
-								$ticket_ids[] = $reply['reply_id'];	
+								$ticket_ids[] = $reply['reply_id'];
 							}
 							foreach ( $ticket_ids as $key => $tickets_id ) {
 								$this->add_attachments( $zip, $tickets_id );
@@ -589,7 +598,7 @@ class WPAS_GDPR_User_Profile {
 
 	/**
 	 * Add attachment in zip
-	 * 
+	 *
 	 * @param object $zip Zip instance.
 	 * @param int 	 $ticket_id Ticket ID.
 	 */
@@ -601,8 +610,15 @@ class WPAS_GDPR_User_Profile {
 		if ( is_dir( $dir ) ) {
 			if ( $dh = opendir( $dir ) ) {
 				while ( ( $file2 = readdir( $dh ) ) !== false ) {
-					if ( file_exists( $dir . '/' . $file2 ) ) {
-						$mimetype = mime_content_type( $dir . '/' . $file2 );
+					if ( file_exists( $dir . '/' . $file2 ) ) {						
+						if(!function_exists("mime_content_type")) {					
+							require_once( WPAS_PATH . 'includes/file-uploader/mime-types.php' );
+							$file_pathinfo = pathinfo($dir . '/' . $file2, PATHINFO_EXTENSION);
+							$mimetype = wpas_get_mime_type( $file_pathinfo );
+						}
+						else {
+							$mimetype = mime_content_type( $dir . '/' . $file2 );
+						}
 						if ( 'text/plain' !== $mimetype ) {
 							if ( ! is_dir( $dir . '/' . $file2 ) ) {
 								$folder_prefix = 'ticket_';

@@ -11,7 +11,7 @@
 namespace EAMann\Sessionz;
 
 use EAMann\Sessionz\Handlers\BaseHandler;
-
+use ReturnTypeWillChange;
 /**
  * Implement PHP's native session handling in such a way as to pass requests
  * for information through a multi-layered stack of potential handlers in
@@ -130,7 +130,9 @@ class Manager implements \SessionHandlerInterface {
         $manager = self::$manager = new self();
         $manager->seedHandlerStack();
 
-        session_set_save_handler($manager);
+        if( ! headers_sent() ){
+            session_set_save_handler($manager);
+        }
 
         return $manager;
     }
@@ -145,7 +147,7 @@ class Manager implements \SessionHandlerInterface {
      *
      * @return true
      */
-    public function close()
+    public function close() : bool
     {
         $this->handlerLock = true;
 
@@ -170,7 +172,7 @@ class Manager implements \SessionHandlerInterface {
      *
      * @return bool
      */
-    public function destroy($session_id)
+    public function destroy($session_id) : bool
     {
         if (is_null($this->handlers)) {
             $this->seedHandlerStack();
@@ -192,6 +194,7 @@ class Manager implements \SessionHandlerInterface {
      *
      * @return bool
      */
+	#[ReturnTypeWillChange]
     public function gc($maxlifetime)
     {
         if (is_null($this->handlers)) {
@@ -214,7 +217,7 @@ class Manager implements \SessionHandlerInterface {
      *
      * @return bool
      */
-    public function open($save_path, $name)
+    public function open($save_path, $name) : bool
     {
         if (is_null($this->handlers)) {
             $this->seedHandlerStack();
@@ -235,6 +238,7 @@ class Manager implements \SessionHandlerInterface {
      *
      * @return string
      */
+	#[ReturnTypeWillChange]
     public function read($session_id)
     {
         if (is_null($this->handlers)) {
@@ -257,7 +261,7 @@ class Manager implements \SessionHandlerInterface {
      *
      * @return bool
      */
-    public function write($session_id, $session_data)
+    public function write($session_id, $session_data) : bool
     {
         if (is_null($this->handlers)) {
             $this->seedHandlerStack();

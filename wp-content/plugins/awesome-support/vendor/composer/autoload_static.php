@@ -4,11 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit34f0008997fe535fb77bc85953f8e63a
+class ComposerStaticInit0985c87a4e510ad3c7383e8d17278fd8
 {
     public static $files = array (
         'bee91f6e081cee6ae314324bd77cdd19' => __DIR__ . '/..' . '/ericmann/wp-session-manager/includes/deprecated.php',
-        '94da49b8a6ca768bd9153ee879ff4877' => __DIR__ . '/..' . '/gambitph/titan-framework/titan-framework.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -53,9 +52,9 @@ class ComposerStaticInit34f0008997fe535fb77bc85953f8e63a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit34f0008997fe535fb77bc85953f8e63a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit34f0008997fe535fb77bc85953f8e63a::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit34f0008997fe535fb77bc85953f8e63a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0985c87a4e510ad3c7383e8d17278fd8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0985c87a4e510ad3c7383e8d17278fd8::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit0985c87a4e510ad3c7383e8d17278fd8::$classMap;
 
         }, null, ClassLoader::class);
     }

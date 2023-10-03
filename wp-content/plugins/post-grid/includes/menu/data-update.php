@@ -17,7 +17,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 <div class="wrap">
 
-	<div id="icon-tools" class="icon32"><br></div><?php echo "<h2>".sprintf(__('%s - Data Update', 'post-grid'), post_grid_plugin_name)."</h2>";?>
+	<div id="icon-tools" class="icon32"><br></div><?php echo "<h2>".esc_html(sprintf(__('%s - Data Update', 'post-grid'), post_grid_plugin_name))."</h2>";?>
 
 
     <div class=" post-grid-settings">
@@ -81,10 +81,9 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
                 update_post_meta($post_id, 'post_grid_meta_options', $post_grid_meta_options);
 
                 ?>
-                <li><?php echo get_the_title(); ?></li>
+                <li><?php echo esc_html(get_the_title()); ?></li>
             <?php
 
-                //echo  $post_id;
             endwhile;
             ?>
            </ul>

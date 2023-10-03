@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'bee91f6e081cee6ae314324bd77cdd19' => $vendorDir . '/ericmann/wp-session-manager/includes/deprecated.php',
-    '94da49b8a6ca768bd9153ee879ff4877' => $vendorDir . '/gambitph/titan-framework/titan-framework.php',
 );
