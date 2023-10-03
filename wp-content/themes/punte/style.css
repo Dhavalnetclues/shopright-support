@@ -2076,7 +2076,7 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
     margin: 0;
     font-size: 13px;
     font-weight: 600;
-    color: #06076e;
+    color: #45b327;
 }
 .banner-search .search button
 {
@@ -2100,7 +2100,7 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
 }
 .banner-search + .s-sug span a
 {
-    color: #06076e;
+    color: #45b327;
     font-weight: 600;
     font-size: 13px;
     background: #ffffff;
@@ -2109,7 +2109,7 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
 }
 .banner-search + .s-sug span a:hover
 {
-    color: #25b4f5;
+    color: #000000;
 }
 .banner-search + .s-sug span + span
 {
@@ -2500,7 +2500,7 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
     background: rgba(230,248,254,1);
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
-    color: #06076E;
+    color: #45b327;
 }
 .faqs .elementor-accordion-item + .elementor-accordion-item
 {
@@ -2561,6 +2561,20 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
     {
         right: 15px;
         color: #7dc868;
+    }
+}
+@media (min-width:1400px) and (max-width:1700px)
+{
+    .banner-section .elementor-container
+    {
+        min-height:450px !important;
+    }
+}
+@media (min-width:1200px) and (max-width:1400px)
+{
+    .banner-section .elementor-container
+    {
+        min-height:400px !important;
     }
 }
 @media (max-width:1700px)
