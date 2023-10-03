@@ -15,6 +15,12 @@ if(!is_page('login') && !is_user_logged_in()){
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
         <link href="<?php echo PUNTE_THEME_URI ?>/assets/css/bootstrap.min.css" rel="stylesheet" />
         <?php wp_head(); ?>        
+        <script>
+            jQuery( document ).ready(function() { 
+                jQuery('.menu-item-search').insertAfter(jQuery('.login-but'));            
+                jQuery('li.menu-item-search').not(':last').remove();
+            });
+        </script>
     </head>
 
     <body <?php body_class(); ?>>
