@@ -9,7 +9,7 @@ $addons_list = $class_post_grid_functions->addons_list();
 
 ?>
 <div class="wrap">
-	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s - Extensions', 'post-grid'), post_grid_plugin_name)?></h2>
+	<div id="icon-tools" class="icon32"><br></div><h2><?php echo esc_html(sprintf(__('%s - Extensions', 'post-grid'), post_grid_plugin_name)); ?></h2>
 
 
     <div class="addon-list">
@@ -28,11 +28,11 @@ $addons_list = $class_post_grid_functions->addons_list();
                 ?>
                 <div class="item">
                     <div class="thumb-wrap">
-                        <a href="<?php echo esc_url_raw($item_link); ?>"><img src="<?php echo esc_url_raw($addon_thumb); ?>"></a>
+                        <a href="<?php echo esc_url($item_link); ?>"><img src="<?php echo esc_url($addon_thumb); ?>"></a>
                     </div>
-                    <div class="addon-title"><a class="addon-link" href="<?php echo esc_url_raw($item_link); ?>"><?php echo $addon_title;?></a></div>
+                    <div class="addon-title"><a class="addon-link" href="<?php echo esc_url($item_link); ?>"><?php echo esc_html($addon_title);?></a></div>
                     <?php if(!empty($zip_link)): ?>
-                        <div class="addon-link button"><a href="<?php echo esc_url_raw($zip_link); ?>">Download</a> </div>
+                        <div class="addon-link button"><a href="<?php echo esc_url($zip_link); ?>">Download</a> </div>
                     <?php endif; ?>
 
 

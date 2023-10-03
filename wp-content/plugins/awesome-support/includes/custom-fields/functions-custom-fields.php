@@ -494,8 +494,8 @@ function wpas_register_core_fields() {
 		$slug = defined( 'WPAS_DEPARTMENT_SLUG' ) ? WPAS_DEPARTMENT_SLUG : 'department';
 
 		/** Get the labels for the department field if they are provided */
-		$as_label_for_department_singular 	= isset( $options[ 'label_for_department_singular' ] ) ? $options[ 'label_for_department_singular' ] : __( 'Module List', 'awesome-support' );
-		$as_label_for_department_plural 	= isset( $options[ 'label_for_department_plural' ] ) ? $options[ 'label_for_department_plural' ] : __( 'Module List', 'awesome-support' );
+		$as_label_for_department_singular 	= isset( $options[ 'label_for_department_singular' ] ) ? $options[ 'label_for_department_singular' ] : __( 'Department', 'awesome-support' );
+		$as_label_for_department_plural 	= isset( $options[ 'label_for_department_plural' ] ) ? $options[ 'label_for_department_plural' ] : __( 'Departments', 'awesome-support' );
 
 		/* Filter the department taxonomy labels */
 		$labels = apply_filters( 'wpas_department_taxonomy_labels', array(
@@ -525,7 +525,7 @@ function wpas_register_core_fields() {
 			'taxo_edit_terms'   	=> 'ticket_edit_departments',
 			'taxo_delete_terms' 	=> 'ticket_delete_departments',			
 			'title'           		=> $as_label_for_department_singular,
-			'order'           		=> -2			
+			'order'           		=> 20			
 		) );
 
 	}

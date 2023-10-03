@@ -9,7 +9,7 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WP_Error;
 use WP_REST_Settings_Controller;
-use TitanFramework;
+use GASFramework;
 
 /**
  * Core class used to manage a site's settings via the REST API.
@@ -28,7 +28,7 @@ class Settings extends WP_REST_Settings_Controller {
 	protected static $_framework_loaded = false;
 
 	/**
-	 * @var TitanFramework
+	 * @var GASFramework
 	 */
 	public static $_titan;
 
@@ -85,7 +85,7 @@ class Settings extends WP_REST_Settings_Controller {
 	 * @return bool True if the request has read access for the item, otherwise false.
 	 */
 	public function get_item_permissions_check( $request ) {
-		
+
 		if ( current_user_can( 'settings_tickets' ) or current_user_can( 'create_ticket' ) ) {
 			return true;
 		}
@@ -381,10 +381,9 @@ class Settings extends WP_REST_Settings_Controller {
 		 */
 
 		// Don't do anything when we're activating a plugin to prevent errors
-		// on redeclaring Titan classes
-		if ( 'activate' === filter_input( INPUT_GET, 'action', FILTER_SANITIZE_STRING )
-		     && ! empty( filter_input( INPUT_GET, 'plugin' ) )
-		) {
+		// on redeclaring Gas classes
+		$action = isset( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : '';
+		if ( 'activate' === $action && ! empty( filter_input( INPUT_GET, 'plugin' )  ) ) {
 			return;
 		}
 
@@ -394,7 +393,7 @@ class Settings extends WP_REST_Settings_Controller {
 		if ( is_array( $activePlugins ) ) {
 			foreach ( $activePlugins as $plugin ) {
 				if ( is_string( $plugin ) ) {
-					if ( stripos( $plugin, '/titan-framework.php' ) !== false ) {
+					if ( stripos( $plugin, '/gas-framework.php' ) !== false ) {
 						$useEmbeddedFramework = false;
 						break;
 					}
@@ -402,15 +401,15 @@ class Settings extends WP_REST_Settings_Controller {
 			}
 		}
 
-		// Use the embedded Titan Framework
-		if ( $useEmbeddedFramework && ! class_exists( 'TitanFramework' ) ) {
-			require_once( WPAS_PATH . 'vendor/gambitph/titan-framework/titan-framework.php' );
+		// Use the embedded Gas Framework
+		if ( $useEmbeddedFramework && ! class_exists( 'GASFramework' ) ) {
+			require_once( WPAS_PATH . 'includes/gas-framework/gas-framework.php' );
 		}
 
 		/*
-		 * Start your Titan code below
+		 * Start your Gas code below
 		 */
-		self::$_titan = TitanFramework::getInstance( 'wpas' );
+		self::$_titan = GASFramework::getInstance( 'wpas' );
 
 		$settings = self::$_titan->createContainer( array(
 				'type'       => 'admin-page',

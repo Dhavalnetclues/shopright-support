@@ -17,6 +17,7 @@
  * @link      https://getawesomesupport.com
  * @copyright 2014-2017 AwesomeSupport
  */
+#[AllowDynamicProperties]
 class WPAS_Email_Notification {
 
 	/**
@@ -457,7 +458,7 @@ class WPAS_Email_Notification {
 					break;
 
 				case 'agent_last_name':
-					$tag['value'] = !empty($agent) ? $agent->first_name : '';
+					$tag['value'] = !empty($agent) ? $agent->last_name : '';
 					break;
 					
 				/* E-mail of the agent assigned to this ticket */
@@ -855,6 +856,11 @@ class WPAS_Email_Notification {
 		$mail = false;
 		
 		$email_sent_recipients = array();
+		
+		if( !isset( $email['subject'] ) || empty( $email['subject'] ) )
+		{
+			$email['subject'] = str_replace( "_", " ", $case ); 
+		}
 		
 		foreach( $email['recipient_email'] as $r_email ) {
 			

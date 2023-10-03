@@ -1,7 +1,0 @@
-[08/11/2023 9:21:20 AM] - Easy WP SMTP debug log file
-
-[08/11/2023 9:25:03 AM] - Headers: MIME-Version: 1.0 | Content-type: text/html; charset=utf-8 | From: ShopRight <helpdesk@shopright.ky> | Reply-To: ShopRight <helpdesk@shopright.ky> | X-Mailer: Awesome Support/6.0.5, To: jignesh.patel@netclues.com, Subject: Support Ticket Created [#8060]
-[08/11/2023 9:25:04 AM] - Headers: MIME-Version: 1.0 | Content-type: text/html; charset=utf-8 | From: ShopRight <helpdesk@shopright.ky> | Reply-To: ShopRight <helpdesk@shopright.ky> | X-Mailer: Awesome Support/6.0.5, To: petter.netclues@gmail.com, Subject: A New Ticket Received #8060
-[08/11/2023 9:33:59 AM] - Headers: , To: bmpatel@netclues.com, Subject: [ShopRight] New Admin Email Address
-[08/11/2023 9:34:15 AM] - Headers: , To: kalvin.netclues@gmail.com, Subject: [ShopRight] Admin Email Changed
-[08/29/2023 7:08:08 PM] - Headers: , To: bmpatel@netclues.com, Subject: [ShopRight] Your site has updated to WordPress 6.3.1

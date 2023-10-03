@@ -149,7 +149,7 @@ function post_grid_layout_element_option_page_views_count($parameters){
 
             ob_start();
             ?>
-            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo $element_index?>{}</textarea>
+            <textarea readonly type="text"  onclick="this.select();">.element_<?php echo esc_attr($element_index); ?>{}</textarea>
             <?php
 
             $html = ob_get_clean();
@@ -197,7 +197,7 @@ function post_grid_layout_element_page_views_count($args){
 
     ?>
     <div class="element element_<?php echo esc_attr($elementIndex); ?> <?php echo esc_attr($custom_class); ?> page_views_count ">
-        <?php echo $html; ?>
+        <?php echo esc_html($html); ?>
     </div>
     <?php
     // endif;
@@ -224,27 +224,27 @@ function post_grid_layout_element_css_page_views_count($args){
 
     ?>
     <style type="text/css">
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>{
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>{
         <?php if(!empty($color)): ?>
-            color: <?php echo $color; ?>;
+            color: <?php echo esc_attr($color); ?>;
         <?php endif; ?>
         <?php if(!empty($font_size)): ?>
-            font-size: <?php echo $font_size; ?>;
+            font-size: <?php echo esc_attr($font_size); ?>;
         <?php endif; ?>
 
         <?php if(!empty($margin)): ?>
-            margin: <?php echo $margin; ?>;
+            margin: <?php echo esc_attr($margin); ?>;
         <?php endif; ?>
         <?php if(!empty($text_align)): ?>
-            text-align: <?php echo $text_align; ?>;
+            text-align: <?php echo esc_attr($text_align); ?>;
         <?php endif; ?>
         <?php if(!empty($css)): ?>
-        <?php echo $css; ?>
+        <?php echo esc_attr($css); ?>
         <?php endif; ?>
         }
         <?php if(!empty($css_hover)): ?>
-        .layout-<?php echo $layout_id; ?> .element_<?php echo $index; ?>:hover{
-        <?php echo $css_hover; ?>
+        .layout-<?php echo esc_attr($layout_id); ?> .element_<?php echo esc_attr($index); ?>:hover{
+        <?php echo esc_attr($css_hover); ?>
         }
         <?php endif; ?>
     </style>

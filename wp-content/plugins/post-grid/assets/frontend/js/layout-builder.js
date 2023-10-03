@@ -5,10 +5,10 @@
 * */
 editorSettings = {
     activeTab: 0,
-    selectedElement: {path:[], elType: '', data: []},
-    breakpoints:{mobile:'576px', tablet:'992px', desktop:'1200px'},
+    selectedElement: { path: [], elType: '', data: [] },
+    breakpoints: { mobile: '576px', tablet: '992px', desktop: '1200px' },
     editElementData: [],
-    elementTree:[],
+    elementTree: [],
 
 }
 
@@ -27,7 +27,7 @@ searchResults = document.getElementById('searchResults');
 
 tools_tabs_switch(editorSettings);
 
-function tools_tabs_switch(editorSettings){
+function tools_tabs_switch(editorSettings) {
     activeTab = editorSettings.activeTab;
 
 
@@ -42,13 +42,13 @@ function tools_tabs_switch(editorSettings){
         content.classList.remove("inactive");
 
 
-        if(i == activeTab){
+        if (i == activeTab) {
 
             tabNav.classList.add("active");
             content.classList.add("active");
             content.style.display = 'block';
 
-        }else{
+        } else {
             tabNav.classList.add("inactive");
             content.classList.add("inactive");
             content.style.display = 'none';
@@ -64,7 +64,7 @@ searchElement.addEventListener('keyup', () => {
     //console.log(typeof  keyword);
     results = [];
 
-    if(keyword.length > 0){
+    if (keyword.length > 0) {
 
 
         toolsToggle = document.querySelectorAll('#elementListWrap > .tools-toggle');
@@ -75,16 +75,16 @@ searchElement.addEventListener('keyup', () => {
 
             //console.log(typeof elements);
 
-            for(index in elements){
+            for (index in elements) {
                 element = elements[index];
 
-                if(typeof(element.innerText) == 'string'){
+                if (typeof (element.innerText) == 'string') {
                     elName = element.innerText.toLowerCase();
 
                     n = elName.indexOf(keyword);
-                    if(n<0){
+                    if (n < 0) {
 
-                    }else{
+                    } else {
 
                         results.push(element);
                     }
@@ -96,7 +96,7 @@ searchElement.addEventListener('keyup', () => {
         })
 
 
-        for(i in results){
+        for (i in results) {
 
             item = results[i];
 
@@ -110,7 +110,7 @@ searchElement.addEventListener('keyup', () => {
 
         searchResults.style.display = 'block';
 
-    }else{
+    } else {
 
         searchResults.innerHTML = '';
         searchResults.style.display = 'none';
@@ -129,7 +129,7 @@ tabNavs.forEach((nav) => {
     nav.addEventListener('click', () => {
 
         dataId = nav.getAttribute('data-id');
-        data_id_nav = 'data-id-'+dataId;
+        data_id_nav = 'data-id-' + dataId;
 
         tabNavs.forEach((navItem) => {
             navClasses = navItem.className;
@@ -141,9 +141,9 @@ tabNavs.forEach((nav) => {
         tabsContent.forEach((tabContent) => {
             tabContentClasses = tabContent.className;
 
-            if(tabContentClasses.indexOf(data_id_nav) < 0){
+            if (tabContentClasses.indexOf(data_id_nav) < 0) {
                 tabContent.style.display = 'none';
-            }else{
+            } else {
                 tabContent.style.display = 'block';
             }
 
@@ -162,11 +162,11 @@ toolsToggle.forEach((toggle) => {
     header[0].addEventListener('click', () => {
         toggleClasses = toggle.className;
 
-        if(toggleClasses.indexOf('active') < 0){
+        if (toggleClasses.indexOf('active') < 0) {
 
             toggle.classList.add("active");
 
-        }else{
+        } else {
 
             toggle.classList.remove("active");
         }
@@ -277,79 +277,79 @@ templateData = [
                 ],
             },
             {
-            elType: "container",
-            class: "pglb-container container",
-            id: "",
-            elName: "Container",
-            isActive: false,
-            children: [
-                {
-                    elType: "row",
-                    elName: "Row",
-                    class: "pglb-row row p-1 m-1",
-                    id: "",
-                    isActive: false,
-                    children: [
-                        {
-                            elType: "column",
-                            elName: "Column",
-                            class: "pglb-column col p-1 m-1",
-                            id: "",
-                            isActive: false,
-                            children: [
-                                {
-                                    elType: "text",
-                                    elName: "Text",
-                                    class: "pglb-text pglb-element text p-1 m-1",
-                                    id: "",
-                                    isActive: false,
-                                    innerHtml: "300 The paragraph element is the default element type.  It should not have any alignment of any kind. It should just flow like you would normally expect. Nothing fancy. Just straight up text, free flowing, with love.",
-                                    children: [],
-                                },
+                elType: "container",
+                class: "pglb-container container",
+                id: "",
+                elName: "Container",
+                isActive: false,
+                children: [
+                    {
+                        elType: "row",
+                        elName: "Row",
+                        class: "pglb-row row p-1 m-1",
+                        id: "",
+                        isActive: false,
+                        children: [
+                            {
+                                elType: "column",
+                                elName: "Column",
+                                class: "pglb-column col p-1 m-1",
+                                id: "",
+                                isActive: false,
+                                children: [
+                                    {
+                                        elType: "text",
+                                        elName: "Text",
+                                        class: "pglb-text pglb-element text p-1 m-1",
+                                        id: "",
+                                        isActive: false,
+                                        innerHtml: "300 The paragraph element is the default element type.  It should not have any alignment of any kind. It should just flow like you would normally expect. Nothing fancy. Just straight up text, free flowing, with love.",
+                                        children: [],
+                                    },
 
-                            ],
-                        },
-                        {
-                            elType: "column",
-                            elName: "Column",
-                            class: "pglb-column col p-1 m-1",
-                            id: "",
-                            isActive: false,
-                            children: [
-                                {
-                                    elType: "text",
-                                    elName: "Text",
-                                    class: "pglb-text pglb-element text p-1 m-1",
-                                    id: "",
-                                    isActive: false,
-                                    innerHtml: "310 The paragraph element is the default element type.  It should not have any alignment of any kind. It should just flow like you would normally expect. Nothing fancy. Just straight up text, free flowing, with love.",
-                                    children: [],
-                                }
-                            ],
-                        },
-                        {
-                            elType: "column",
-                            elName: "Column",
-                            class: "pglb-column col p-1 m-1",
-                            id: "",
-                            isActive: false,
-                            children: [
-                                {
-                                    elType: "text",
-                                    elName: "Text",
-                                    class: "pglb-text pglb-element text p-1 m-1",
-                                    id: "",
-                                    isActive: false,
-                                    innerHtml: "320 The paragraph element is the default element type.  It should not have any alignment of any kind. It should just flow like you would normally expect. Nothing fancy. Just straight up text, free flowing, with love.",
-                                    children: [],
-                                }
-                            ],
-                        },
+                                ],
+                            },
+                            {
+                                elType: "column",
+                                elName: "Column",
+                                class: "pglb-column col p-1 m-1",
+                                id: "",
+                                isActive: false,
+                                children: [
+                                    {
+                                        elType: "text",
+                                        elName: "Text",
+                                        class: "pglb-text pglb-element text p-1 m-1",
+                                        id: "",
+                                        isActive: false,
+                                        innerHtml: "310 The paragraph element is the default element type.  It should not have any alignment of any kind. It should just flow like you would normally expect. Nothing fancy. Just straight up text, free flowing, with love.",
+                                        children: [],
+                                    }
+                                ],
+                            },
+                            {
+                                elType: "column",
+                                elName: "Column",
+                                class: "pglb-column col p-1 m-1",
+                                id: "",
+                                isActive: false,
+                                children: [
+                                    {
+                                        elType: "text",
+                                        elName: "Text",
+                                        class: "pglb-text pglb-element text p-1 m-1",
+                                        id: "",
+                                        isActive: false,
+                                        innerHtml: "320 The paragraph element is the default element type.  It should not have any alignment of any kind. It should just flow like you would normally expect. Nothing fancy. Just straight up text, free flowing, with love.",
+                                        children: [],
+                                    }
+                                ],
+                            },
 
 
-                    ],
-                },
-            ],
+                        ],
+                    },
+                ],
             },
         ]
     }
@@ -361,53 +361,53 @@ templateData = [
 
 
 elementsData = {
-    container:{
+    container: {
         elType: "container",
         class: "pglb-container container",
         id: "",
         isActive: false,
         children: [],
     },
-    row:{
+    row: {
         elType: "row",
         class: "pglb-row row p-1 m-1",
         id: "",
         isActive: false,
         children: [],
     },
-    column:{
+    column: {
         elType: "column",
         class: "pglb-column col p-1 m-1",
         id: "",
         isActive: false,
         children: [],
     },
-    heading:{
+    heading: {
         elType: "heading",
         class: "pglb-heading pglb-element p-1 m-1",
         id: "",
         isActive: false,
         tag: "h2",
         innerHtml: 'The heading element',
-        style:{
-            color: {'576px': '', '992px': '', '1200px': ''},
-            hoverColor: {'576px': '', '992px': '', '1200px': ''},
-            fontSize: {'576px': '', '992px': '', '1200px': ''},
-            fontFamily: {'576px': '', '992px': '', '1200px': ''},
-            textAlign: {'576px': '', '992px': '', '1200px': ''},
-            fontWeight: {'576px': '', '992px': '', '1200px': ''},
-            textTransform: {'576px': '', '992px': '', '1200px': ''},
-            textDecoration: {'576px': '', '992px': '', '1200px': ''},
-            fontStyle: {'576px': '', '992px': '', '1200px': ''},
-            lineHeight: {'576px': '', '992px': '', '1200px': ''},
-            letterSpacing: {'576px': '', '992px': '', '1200px': ''},
-            zIndex: {'576px': '', '992px': '', '1200px': ''},
-            margin: {'576px': {top:'', right:'', bottom:'', left: ''}, '992px': {top:'', right:'', bottom:'', left: ''}, '1200px': {top:'', right:'', bottom:'', left: ''}},
-            padding: {'576px': {top:'', right:'', bottom:'', left: ''}, '992px': {top:'', right:'', bottom:'', left: ''}, '1200px': {top:'', right:'', bottom:'', left: ''}},
+        style: {
+            color: { '576px': '', '992px': '', '1200px': '' },
+            hoverColor: { '576px': '', '992px': '', '1200px': '' },
+            fontSize: { '576px': '', '992px': '', '1200px': '' },
+            fontFamily: { '576px': '', '992px': '', '1200px': '' },
+            textAlign: { '576px': '', '992px': '', '1200px': '' },
+            fontWeight: { '576px': '', '992px': '', '1200px': '' },
+            textTransform: { '576px': '', '992px': '', '1200px': '' },
+            textDecoration: { '576px': '', '992px': '', '1200px': '' },
+            fontStyle: { '576px': '', '992px': '', '1200px': '' },
+            lineHeight: { '576px': '', '992px': '', '1200px': '' },
+            letterSpacing: { '576px': '', '992px': '', '1200px': '' },
+            zIndex: { '576px': '', '992px': '', '1200px': '' },
+            margin: { '576px': { top: '', right: '', bottom: '', left: '' }, '992px': { top: '', right: '', bottom: '', left: '' }, '1200px': { top: '', right: '', bottom: '', left: '' } },
+            padding: { '576px': { top: '', right: '', bottom: '', left: '' }, '992px': { top: '', right: '', bottom: '', left: '' }, '1200px': { top: '', right: '', bottom: '', left: '' } },
         },
         children: [],
     },
-    div:{
+    div: {
         elType: "div",
         class: "pglb-div pglb-element p-1 m-1",
         id: "",
@@ -416,32 +416,32 @@ elementsData = {
         children: [],
     },
 
-    text:{
+    text: {
         elType: "text",
         class: "pglb-text pglb-element p-1 m-1",
         id: "",
         isActive: false,
         innerHtml: 'The paragraph element is the default element type. It should not have any alignment of any kind. It should just flow like you would normally expect. Nothing fancy. Just straight up text, free flowing, with love.',
-        style:{
-            color: {'576px': '', '992px': '', '1200px': ''},
-            hoverColor: {'576px': '', '992px': '', '1200px': ''},
-            fontSize: {'576px': '', '992px': '', '1200px': ''},
-            fontFamily: {'576px': '', '992px': '', '1200px': ''},
-            textAlign: {'576px': '', '992px': '', '1200px': ''},
-            fontWeight: {'576px': '', '992px': '', '1200px': ''},
-            textTransform: {'576px': '', '992px': '', '1200px': ''},
-            textDecoration: {'576px': '', '992px': '', '1200px': ''},
-            fontStyle: {'576px': '', '992px': '', '1200px': ''},
-            lineHeight: {'576px': '', '992px': '', '1200px': ''},
-            letterSpacing: {'576px': '', '992px': '', '1200px': ''},
-            zIndex: {'576px': '', '992px': '', '1200px': ''},
-            margin: {'576px': {top:'', right:'', bottom:'', left: ''}, '992px': {top:'', right:'', bottom:'', left: ''}, '1200px': {top:'', right:'', bottom:'', left: ''}},
-            padding: {'576px': {top:'', right:'', bottom:'', left: ''}, '992px': {top:'', right:'', bottom:'', left: ''}, '1200px': {top:'', right:'', bottom:'', left: ''}},
+        style: {
+            color: { '576px': '', '992px': '', '1200px': '' },
+            hoverColor: { '576px': '', '992px': '', '1200px': '' },
+            fontSize: { '576px': '', '992px': '', '1200px': '' },
+            fontFamily: { '576px': '', '992px': '', '1200px': '' },
+            textAlign: { '576px': '', '992px': '', '1200px': '' },
+            fontWeight: { '576px': '', '992px': '', '1200px': '' },
+            textTransform: { '576px': '', '992px': '', '1200px': '' },
+            textDecoration: { '576px': '', '992px': '', '1200px': '' },
+            fontStyle: { '576px': '', '992px': '', '1200px': '' },
+            lineHeight: { '576px': '', '992px': '', '1200px': '' },
+            letterSpacing: { '576px': '', '992px': '', '1200px': '' },
+            zIndex: { '576px': '', '992px': '', '1200px': '' },
+            margin: { '576px': { top: '', right: '', bottom: '', left: '' }, '992px': { top: '', right: '', bottom: '', left: '' }, '1200px': { top: '', right: '', bottom: '', left: '' } },
+            padding: { '576px': { top: '', right: '', bottom: '', left: '' }, '992px': { top: '', right: '', bottom: '', left: '' }, '1200px': { top: '', right: '', bottom: '', left: '' } },
         },
         children: [],
     },
 
-    emptyRow:{
+    emptyRow: {
         elType: "emptyRow",
         class: "pglb-empty text-center w-100 p-1 m-1",
         id: "",
@@ -449,7 +449,7 @@ elementsData = {
         innerHtml: '<i class="far fa-plus-square"></i> Add Row',
         children: [],
     },
-    emptyColumn:{
+    emptyColumn: {
         elType: "emptyColumn",
         class: "pglb-empty text-center w-100 p-1 m-1",
         id: "",
@@ -458,7 +458,7 @@ elementsData = {
         children: [],
     },
 
-    empty:{
+    empty: {
         elType: "empty",
         class: "pglb-empty text-center w-100 p-1 m-1",
         id: "",
@@ -467,7 +467,7 @@ elementsData = {
         children: [],
     },
 
-    link:{
+    link: {
         elType: "link",
         class: "pglb-link pglb-element p-1 m-1",
         id: "",
@@ -475,35 +475,35 @@ elementsData = {
         innerHtml: 'Link text',
         target: '_blank',
         href: '#url',
-        style:{
-            color: {'576px': '', '992px': '', '1200px': ''},
-            hoverColor: {'576px': '', '992px': '', '1200px': ''},
-            fontSize: {'576px': '', '992px': '', '1200px': ''},
-            fontFamily: {'576px': '', '992px': '', '1200px': ''},
-            textAlign: {'576px': '', '992px': '', '1200px': ''},
-            fontWeight: {'576px': '', '992px': '', '1200px': ''},
-            textTransform: {'576px': '', '992px': '', '1200px': ''},
-            textDecoration: {'576px': '', '992px': '', '1200px': ''},
-            fontStyle: {'576px': '', '992px': '', '1200px': ''},
-            lineHeight: {'576px': '', '992px': '', '1200px': ''},
-            letterSpacing: {'576px': '', '992px': '', '1200px': ''},
-            zIndex: {'576px': '', '992px': '', '1200px': ''},
-            margin: {'576px': {top:'', right:'', bottom:'', left: ''}, '992px': {top:'', right:'', bottom:'', left: ''}, '1200px': {top:'', right:'', bottom:'', left: ''}},
-            padding: {'576px': {top:'', right:'', bottom:'', left: ''}, '992px': {top:'', right:'', bottom:'', left: ''}, '1200px': {top:'', right:'', bottom:'', left: ''}},
+        style: {
+            color: { '576px': '', '992px': '', '1200px': '' },
+            hoverColor: { '576px': '', '992px': '', '1200px': '' },
+            fontSize: { '576px': '', '992px': '', '1200px': '' },
+            fontFamily: { '576px': '', '992px': '', '1200px': '' },
+            textAlign: { '576px': '', '992px': '', '1200px': '' },
+            fontWeight: { '576px': '', '992px': '', '1200px': '' },
+            textTransform: { '576px': '', '992px': '', '1200px': '' },
+            textDecoration: { '576px': '', '992px': '', '1200px': '' },
+            fontStyle: { '576px': '', '992px': '', '1200px': '' },
+            lineHeight: { '576px': '', '992px': '', '1200px': '' },
+            letterSpacing: { '576px': '', '992px': '', '1200px': '' },
+            zIndex: { '576px': '', '992px': '', '1200px': '' },
+            margin: { '576px': { top: '', right: '', bottom: '', left: '' }, '992px': { top: '', right: '', bottom: '', left: '' }, '1200px': { top: '', right: '', bottom: '', left: '' } },
+            padding: { '576px': { top: '', right: '', bottom: '', left: '' }, '992px': { top: '', right: '', bottom: '', left: '' }, '1200px': { top: '', right: '', bottom: '', left: '' } },
         },
         children: [],
     },
-    image:{
+    image: {
         elType: "image",
         class: "pglb-image pglb-element p-1 m-1",
         id: "",
         isActive: false,
         src: 'http://localhost/wp/wp-content/uploads/2018/11/Untitled-1.png',
-        style:{
-            width: {'576px': '', '992px': '', '1200px': ''},
-            height: {'576px': '', '992px': '', '1200px': ''},
-            margin: {'576px': '', '992px': '', '1200px': ''},
-            padding: {'576px': '', '992px': '', '1200px': ''},
+        style: {
+            width: { '576px': '', '992px': '', '1200px': '' },
+            height: { '576px': '', '992px': '', '1200px': '' },
+            margin: { '576px': '', '992px': '', '1200px': '' },
+            padding: { '576px': '', '992px': '', '1200px': '' },
         },
         children: [],
     },
@@ -519,7 +519,7 @@ function elementTree(templateData, elementTreeList) {
 
     html += '<ul>';
 
-    for (var index in templateData){
+    for (var index in templateData) {
 
         element = templateData[index];
         elType = (element.elType) ? element.elType : '';
@@ -527,7 +527,7 @@ function elementTree(templateData, elementTreeList) {
 
         children = element.children;
         html += '<li>';
-        html += '<span>'+elName+'</span>';
+        html += '<span>' + elName + '</span>';
 
         elementTreeList.push([index, elName]);
 
@@ -535,7 +535,7 @@ function elementTree(templateData, elementTreeList) {
 
 
 
-        if(children.length > 0){
+        if (children.length > 0) {
             elementTree(children, elementTreeList);
         }
         html += '</li>';
@@ -561,11 +561,11 @@ function elementTreeHTMl() {
     html = '';
 
 
-    for(index in elementTree){
+    for (index in elementTree) {
         elName = elementTree[index];
 
         html += '<li>';
-        html += '<span>'+elName+'</span>';
+        html += '<span>' + elName + '</span>';
         html += '</li>';
     }
 
@@ -593,11 +593,11 @@ function elTreeView(data) {
 
     html = '';
 
-    for (var index in childrenMain){
+    for (var index in childrenMain) {
         element = childrenMain[index];
         elType = (element.elType) ? element.elType : '';
         element.index = index;
-        element.id = elType+"-"+index;
+        element.id = elType + "-" + index;
 
         children = element.children;
 
@@ -619,9 +619,9 @@ function elTreeView(data) {
 
         html += elementStartTag(element);
 
-        if(children.length > 0){
+        if (children.length > 0) {
 
-            selectedPath.splice(0,1);
+            selectedPath.splice(0, 1);
             args.selectedPath = selectedPath;
 
 
@@ -644,10 +644,10 @@ function elTreeView(data) {
 
 elTreeView(templateData);
 
-function generateChildHtml(data, args){
+function generateChildHtml(data, args) {
 
 
-    for (var index in data){
+    for (var index in data) {
         element = data[index];
         elType = element.elType;
         id = element.id;
@@ -671,7 +671,7 @@ function generateChildHtml(data, args){
 
         html += elementStartTag(element);
 
-        if(  children.length > 0){
+        if (children.length > 0) {
 
             generateChildHtml(children, args);
         }
@@ -688,78 +688,78 @@ templatePreview.innerHTML = html;
 
 
 
-function  elementStartTag( element) {
+function elementStartTag(element) {
 
-    if(elType == 'container'){
+    if (elType == 'container') {
         return generateElHtmlcontainer(element);
-    }else if(elType == 'row'){
+    } else if (elType == 'row') {
         return generateElHtmlrow(element);
     }
-    else if(elType == 'column'){
+    else if (elType == 'column') {
         return generateElHtmlcolumn(element);
     }
-    else if(elType == 'text'){
+    else if (elType == 'text') {
         return generateElHtmltext(element);
     }
-    else if(elType == 'heading'){
+    else if (elType == 'heading') {
         return generateElHtmlheading(element);
     }
-    else if(elType == 'image'){
+    else if (elType == 'image') {
         return generateElHtmlimage(element);
     }
-    else if(elType == 'link'){
+    else if (elType == 'link') {
         return generateElHtmllink(element);
     }
-    else if(elType == 'empty'){
+    else if (elType == 'empty') {
         return generateElHtmlempty(element);
     }
-    else if(elType == 'emptyColumn'){
+    else if (elType == 'emptyColumn') {
         return generateElHtmlemptyColumn(element);
     }
-    else if(elType == 'emptyRow'){
+    else if (elType == 'emptyRow') {
         return generateElHtmlemptyRow(element);
     }
-    else{
+    else {
         return "";
     }
 }
 
 
-function  elementEndTag( element) {
+function elementEndTag(element) {
 
-    if(elType == 'container'){
+    if (elType == 'container') {
         return '</div>';
-    }else if(elType == 'row'){
-        return '</div>';
-    }
-    else if(elType == 'column'){
+    } else if (elType == 'row') {
         return '</div>';
     }
-    else if(elType == 'text'){
+    else if (elType == 'column') {
         return '</div>';
     }
-    else if(elType == 'heading'){
+    else if (elType == 'text') {
         return '</div>';
     }
-
-    else if(elType == 'image'){
-        return '</div>';
-    }
-    else if(elType == 'link'){
-        return '</div>';
-    }
-    else if(elType == 'empty'){
-        return '</div>';
-    }
-    else if(elType == 'emptyColumn'){
-        return '</div>';
-    }
-    else if(elType == 'emptyRow'){
+    else if (elType == 'heading') {
         return '</div>';
     }
 
+    else if (elType == 'image') {
+        return '</div>';
+    }
+    else if (elType == 'link') {
+        return '</div>';
+    }
+    else if (elType == 'empty') {
+        return '</div>';
+    }
+    else if (elType == 'emptyColumn') {
+        return '</div>';
+    }
+    else if (elType == 'emptyRow') {
+        return '</div>';
+    }
 
-    else{
+
+    else {
         return "";
     }
 }
@@ -771,7 +771,7 @@ function  elementEndTag( element) {
 
 
 
-function generateElHtmlcontainer(element){
+function generateElHtmlcontainer(element) {
 
     html = "";
 
@@ -784,12 +784,12 @@ function generateElHtmlcontainer(element){
     children = (children.length != 0) ? element.children : [elementsData.emptyRow];
 
 
-    elData = {elType:elType,index:index,elId:elId,elClass: elClass };
+    elData = { elType: elType, index: index, elId: elId, elClass: elClass };
 
 
 
 
-    html += '<div index="'+index+'" id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div index="' + index + '" id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += '<div  class="containerSettings"><span onclick="customizeElement(this, event)" class="customizeElement"><i class="far fa-edit"></i></span><span onclick="selectElement(this, event)" class="selectElement"><i class="fas fa-check"></i></span><span onclick="removeElement(this, event )" class="remove"><i class="fas fa-times"></i></span></div>';
 
     // html += '{{el_container}}';
@@ -802,7 +802,7 @@ function generateElHtmlcontainer(element){
 }
 
 
-function generateElHtmlrow(element){
+function generateElHtmlrow(element) {
 
     html = "";
 
@@ -815,7 +815,7 @@ function generateElHtmlrow(element){
 
     children = (children.length != 0) ? element.children : [elementsData.emptyColumn];
 
-    html += '<div  index="'+index+'" id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div  index="' + index + '" id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += '<div class="rowSettings"><span onclick="customizeElement(this, event)" class="customizeElement"><i class="far fa-edit"></i></span><span onclick="selectElement(this, event)" class="selectElement"><i class="fas fa-check"></i></span><span onclick="removeElement(this, event)" class="remove"><i class="fas fa-times"></i></span></div>';
 
     // html += '{{el_row}}';
@@ -828,7 +828,7 @@ function generateElHtmlrow(element){
 }
 
 
-function generateElHtmlcolumn(element){
+function generateElHtmlcolumn(element) {
 
     html = "";
 
@@ -845,10 +845,10 @@ function generateElHtmlcolumn(element){
 
     index = element.index;
 
-    html += '<div  index="'+index+'" id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div  index="' + index + '" id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += '<div class="columnSettings"><span onclick="customizeElement(this, event)" class="customizeElement"><i class="far fa-edit"></i></span><span onclick="selectElement(this, event)" class="selectElement" ><i class="fas fa-check"></i></span><span onclick="removeElement(this, event)" class="remove"><i class="fas fa-times"></i></span></div>';
 
-    if(children.length == 0){
+    if (children.length == 0) {
         html += '<i class="far fa-plus-square"></i>';
     }
 
@@ -859,7 +859,7 @@ function generateElHtmlcolumn(element){
 
 }
 
-function generateElHtmltext(element){
+function generateElHtmltext(element) {
 
     html = "";
 
@@ -873,7 +873,7 @@ function generateElHtmltext(element){
 
     children = element.children;
 
-    html += '<div index="'+index+'"  id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div index="' + index + '"  id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += '<div class="elementSettings"><span onclick="customizeElement(this, event)" class="customizeElement"><i class="far fa-edit"></i></span><span onclick="selectElement(this, event)" class="selectElement" ><i class="fas fa-check"></i></span><span onclick="removeElement(this, event)" class="remove"><i class="fas fa-times"></i></span></div>';
 
     html += innerHtml;
@@ -883,7 +883,7 @@ function generateElHtmltext(element){
 }
 
 
-function generateElHtmlempty(element){
+function generateElHtmlempty(element) {
 
     html = "";
 
@@ -897,7 +897,7 @@ function generateElHtmlempty(element){
 
 
 
-    html += '<div  index="'+index+'" id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div  index="' + index + '" id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += innerHtml;
     // html += '</div>';
 
@@ -905,7 +905,7 @@ function generateElHtmlempty(element){
 }
 
 
-function generateElHtmlemptyRow(element){
+function generateElHtmlemptyRow(element) {
 
     html = "";
 
@@ -919,7 +919,7 @@ function generateElHtmlemptyRow(element){
 
 
 
-    html += '<div  index="'+index+'" id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div  index="' + index + '" id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += innerHtml;
     // html += '</div>';
 
@@ -927,7 +927,7 @@ function generateElHtmlemptyRow(element){
 }
 
 
-function generateElHtmlemptyColumn(element){
+function generateElHtmlemptyColumn(element) {
 
     html = "";
 
@@ -941,7 +941,7 @@ function generateElHtmlemptyColumn(element){
 
 
 
-    html += '<div  index="'+index+'" id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div  index="' + index + '" id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += innerHtml;
     // html += '</div>';
 
@@ -956,7 +956,7 @@ function generateElHtmlemptyColumn(element){
 
 
 
-function generateElHtmllink(element){
+function generateElHtmllink(element) {
 
     html = "";
 
@@ -974,10 +974,10 @@ function generateElHtmllink(element){
 
 
 
-    html += '<div index="'+index+'"  id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div index="' + index + '"  id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += '<div class="elementSettings"><span onclick="customizeElement(this, event)" class="customizeElement"><i class="far fa-edit"></i></span><span onclick="selectElement(this, event)" class="selectElement" ><i class="fas fa-check"></i></span><span onclick="removeElement(this, event)" class="remove"><i class="fas fa-times"></i></span></div>';
 
-    html += '<a target="'+target+'" href="'+href+'">';
+    html += '<a target="' + target + '" href="' + href + '">';
     html += innerHtml;
     html += '</a>';
 
@@ -987,7 +987,7 @@ function generateElHtmllink(element){
     return html;
 
 }
-function generateElHtmlheading(element){
+function generateElHtmlheading(element) {
 
     html = "";
 
@@ -1004,11 +1004,11 @@ function generateElHtmlheading(element){
 
 
 
-    html += '<div  index="'+index+'" id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div  index="' + index + '" id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += '<div class="elementSettings"><span onclick="customizeElement(this, event)" class="customizeElement"><i class="far fa-edit"></i></span><span onclick="selectElement(this, event)" class="selectElement" ><i class="fas fa-check"></i></span><span onclick="removeElement(this, event)" class="remove"><i class="fas fa-times"></i></span></div>';
-    html += '<'+tag+'>';
+    html += '<' + tag + '>';
     html += innerHtml;
-    html += '</'+tag+'>';
+    html += '</' + tag + '>';
     // html += '</div>';
 
     return html;
@@ -1016,7 +1016,7 @@ function generateElHtmlheading(element){
 }
 
 
-function generateElHtmlimage(element){
+function generateElHtmlimage(element) {
 
     html = "";
 
@@ -1029,9 +1029,9 @@ function generateElHtmlimage(element){
 
 
 
-    html += '<div  index="'+index+'" id="'+elId+'" class="'+elClass+'" elType="'+elType+'">';
+    html += '<div  index="' + index + '" id="' + elId + '" class="' + elClass + '" elType="' + elType + '">';
     html += '<div class="elementSettings"><span onclick="customizeElement(this, event)" class="customizeElement"><i class="far fa-edit"></i></span><span onclick="selectElement(this, event)" class="selectElement" ><i class="fas fa-check"></i></span><span onclick="removeElement(this, event)" class="remove"><i class="fas fa-times"></i></span></div>';
-    html += '<img src="'+src+'" />';
+    html += '<img src="' + src + '" />';
     //html += '{{el_text}}';
     // html += '</div>';
 
@@ -1046,7 +1046,7 @@ function generateElHtmlimage(element){
 
 
 
-function removeElement(currentEl, event){
+function removeElement(currentEl, event) {
 
 
 
@@ -1077,11 +1077,11 @@ function removeElement(currentEl, event){
 
 
 
-        if(elIndex !== null)
+        if (elIndex !== null)
             Indexes.push(elIndex);
 
 
-        if(elId == 'template-preview') break;
+        if (elId == 'template-preview') break;
 
 
 
@@ -1098,12 +1098,12 @@ function removeElement(currentEl, event){
     indexCount = Indexes.length;
 
 
-    if(indexCount == 1){
+    if (indexCount == 1) {
         //delete templateData[Indexes[0]];
         newtemplateData.splice(Indexes[0], 1);
         templatePreview.innerHTML = elTreeView(newtemplateData);
 
-    }else{
+    } else {
 
 
         containerIndex = Indexes[0];
@@ -1131,17 +1131,17 @@ function removeElement(currentEl, event){
 
 
 
-function  deletetemplateData(index, data) {
+function deletetemplateData(index, data) {
 
     indexCount = index.length;
 
 
-    if(indexCount > 1){
+    if (indexCount > 1) {
 
         newData = data.children[index[0]];
 
         //delete index[0];
-        index.splice(0,1);
+        index.splice(0, 1);
 
 
 
@@ -1150,7 +1150,7 @@ function  deletetemplateData(index, data) {
 
 
 
-    }else{
+    } else {
 
 
         data.children.splice(index[0], 1);
@@ -1172,7 +1172,7 @@ function generateElementSettings(elType) {
     html = '';
 
 
-    html += 'Hello '+elType;
+    html += elType;
 
 
 
@@ -1206,7 +1206,7 @@ function customizeElement(currentEl, event) {
 
 
 
-function getElementByIndex(templateData, index){
+function getElementByIndex(templateData, index) {
     //console.log(templateData);
 
     //console.log('indexes: ');
@@ -1215,7 +1215,7 @@ function getElementByIndex(templateData, index){
     indexlength = index.length;
     //console.log('indexlength: '+ indexlength);
 
-    if(indexlength == 1){
+    if (indexlength == 1) {
 
         //console.log('Retunred element');
         //console.log(templateData[index[0]]);
@@ -1231,12 +1231,12 @@ function getElementByIndex(templateData, index){
 
 
 
-    if(indexlength > 1){
+    if (indexlength > 1) {
         for (var x in index) {
             templateDataChild = templateData[index[x]].children;
 
             index.shift();
-            getElementByIndex( templateDataChild, index);
+            getElementByIndex(templateDataChild, index);
         }
     }
 
@@ -1251,7 +1251,7 @@ function getElementByIndex(templateData, index){
 
 
 
-function selectElement(currentEl, event){
+function selectElement(currentEl, event) {
     event.stopPropagation();
 
     el = currentEl;
@@ -1279,11 +1279,11 @@ function selectElement(currentEl, event){
         console.log(elData);
 
 
-        if(elIndex !== null)
+        if (elIndex !== null)
             Indexes.push(elIndex);
 
 
-        if(elId == 'template-preview') break;
+        if (elId == 'template-preview') break;
 
 
 
@@ -1309,7 +1309,7 @@ function selectElement(currentEl, event){
     //console.log('Main data: ');
     //console.log(templateData[0].children);
 
-    selectedElementData = getElementByIndex( templateData[0].children, Indexes);
+    selectedElementData = getElementByIndex(templateData[0].children, Indexes);
 
 
     console.log(selectedElementData);
@@ -1318,7 +1318,7 @@ function selectElement(currentEl, event){
 }
 
 
-function addElement(event, element ){
+function addElement(event, element) {
 
     event.stopPropagation();
 
@@ -1331,13 +1331,13 @@ function addElement(event, element ){
     selectedelType = (selectedElement.elType) ? selectedElement.elType : 'container';
     selectedPath = (selectedElement.path.length != 0) ? selectedElement.path : ["0"];
 
-    if(selectedelType == 'container'){
+    if (selectedelType == 'container') {
 
-        if(elType == 'container'){
+        if (elType == 'container') {
             containerIndex = selectedPath[0];
             templateData.push(elementsData[elType]);
 
-        }else if(elType == 'row'){
+        } else if (elType == 'row') {
             containerIndex = selectedPath[0];
             rowIndex = selectedPath[1];
 
@@ -1346,7 +1346,7 @@ function addElement(event, element ){
 
 
             //templateData.push(elementsData[elType]);
-        }else if(elType == 'column'){
+        } else if (elType == 'column') {
             containerIndex = selectedPath[0];
             rowIndex = selectedPath[1];
             columnIndex = selectedPath[2];
@@ -1354,7 +1354,7 @@ function addElement(event, element ){
             templateData[containerIndex].children[rowIndex].children.push(elementsData[elType]);
 
             //templateData.push(elementsData[elType]);
-        }else {
+        } else {
             containerIndex = selectedPath[0];
             rowIndex = selectedPath[1];
             columnIndex = selectedPath[2];
@@ -1367,9 +1367,9 @@ function addElement(event, element ){
 
 
 
-    }else if(selectedelType == 'row'){
+    } else if (selectedelType == 'row') {
 
-        if(elType == 'column'){
+        if (elType == 'column') {
             containerIndex = selectedPath[0];
             rowIndex = selectedPath[1];
             columnIndex = selectedPath[2];
@@ -1379,14 +1379,14 @@ function addElement(event, element ){
             //templateData.push(elementsData[elType]);
         }
 
-    }else if(selectedelType == 'column'){
+    } else if (selectedelType == 'column') {
 
 
-        if(elType == 'container'){
+        if (elType == 'container') {
             containerIndex = selectedPath[0];
             templateData.push(elementsData[elType]);
 
-        }else if(elType == 'row'){
+        } else if (elType == 'row') {
             containerIndex = selectedPath[0];
             rowIndex = selectedPath[1];
 
@@ -1394,7 +1394,7 @@ function addElement(event, element ){
 
 
             //templateData.push(elementsData[elType]);
-        }else if(elType == 'column'){
+        } else if (elType == 'column') {
             containerIndex = selectedPath[0];
             rowIndex = selectedPath[1];
             columnIndex = selectedPath[2];
@@ -1402,7 +1402,7 @@ function addElement(event, element ){
             templateData[containerIndex].children[rowIndex].children.push(elementsData[elType]);
 
             //templateData.push(elementsData[elType]);
-        }else {
+        } else {
             containerIndex = selectedPath[0];
             rowIndex = selectedPath[1];
             columnIndex = selectedPath[2];
@@ -1415,7 +1415,7 @@ function addElement(event, element ){
 
         }
 
-    }else{
+    } else {
 
     }
 
