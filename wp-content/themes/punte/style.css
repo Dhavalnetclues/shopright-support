@@ -952,7 +952,8 @@ object {
 
 /*---Header Styles---*/
 .site-header{
-    position: relative;
+    position: sticky;
+    top: 0px;
     z-index: 99;   
 }
 
@@ -2036,7 +2037,7 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
 {
     font-weight: 400;
     font-size: 30px;
-    color: #ffffff;
+    color: #000000;
     text-align:center;
     margin: 70px 0 0;
 }
@@ -2045,6 +2046,7 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
     display: block;
     font-weight: 700;
     font-size: 45px;
+    color:#45b327;
 }
 .banner-search
 {
@@ -2095,7 +2097,7 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
 }
 .banner-search + .s-sug
 {
-    color: #ffffff;
+    color: #000000;
     margin-top: 3px;
 }
 .banner-search + .s-sug span a
@@ -2694,6 +2696,11 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
     .searchwp-live-search-results .searchwp-live-search-result a:before
     {
         right: 15px;
+    }
+    .searchwp-live-search-results-showing
+    {
+        max-height: 338px;
+        overflow: auto;
     }
 }
 @media (max-width:1024px)
