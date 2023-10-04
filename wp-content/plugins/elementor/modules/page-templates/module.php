@@ -154,9 +154,9 @@ class Module extends BaseModule {
 		}
 
 		$page_templates = [
-			self::TEMPLATE_CANVAS => _x( 'Elementor Canvas', 'Page Template', 'elementor' ),
-			self::TEMPLATE_HEADER_FOOTER => _x( 'Elementor Full Width', 'Page Template', 'elementor' ),
-			self::TEMPLATE_THEME => _x( 'Theme', 'Page Template', 'elementor' ),
+			self::TEMPLATE_CANVAS => esc_html_x( 'Elementor Canvas', 'Page Template', 'elementor' ),
+			self::TEMPLATE_HEADER_FOOTER => esc_html_x( 'Elementor Full Width', 'Page Template', 'elementor' ),
+			self::TEMPLATE_THEME => esc_html_x( 'Theme', 'Page Template', 'elementor' ),
 		] + $page_templates;
 
 		return $page_templates;
@@ -308,10 +308,22 @@ class Module extends BaseModule {
 			$control_id . '_default_description',
 			[
 				'type' => Controls_Manager::RAW_HTML,
-				'raw' => '<b>' . esc_html__( 'Default Page Template from your theme', 'elementor' ) . '</b>',
+				'raw' => '<b>' . esc_html__( 'The default page template as defined in Elementor Panel → Hamburger Menu → Site Settings.', 'elementor' ) . '</b>',
 				'content_classes' => 'elementor-descriptor',
 				'condition' => [
 					$control_id => 'default',
+				],
+			]
+		);
+
+		$document->add_control(
+			$control_id . '_theme_description',
+			[
+				'type' => Controls_Manager::RAW_HTML,
+				'raw' => '<b>' . esc_html__( 'Default Page Template from your theme.', 'elementor' ) . '</b>',
+				'content_classes' => 'elementor-descriptor',
+				'condition' => [
+					$control_id => self::TEMPLATE_THEME,
 				],
 			]
 		);
@@ -397,11 +409,7 @@ class Module extends BaseModule {
 	 * @access public
 	 */
 	public static function body_open() {
-		if ( function_exists( 'wp_body_open' ) ) {
-			wp_body_open();
-		} else {
-			do_action( 'wp_body_open' );
-		}
+		wp_body_open();
 	}
 
 	/**

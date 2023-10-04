@@ -1,9 +1,9 @@
 <?php
 namespace Elementor;
 
-use Elementor\Core\Page_Assets\Data_Managers\Font_Icon_Svg as Font_Icon_Svg_Data_Manager;
-use Elementor\Core\Page_Assets\Managers\Font_Icon_Svg\Manager as Font_Icon_Svg_Manager;
-use Elementor\Core\Files\Assets\Svg\Svg_Handler;
+use Elementor\Core\Files\File_Types\Svg;
+use Elementor\Core\Page_Assets\Data_Managers\Font_Icon_Svg\Manager as Font_Icon_Svg_Data_Manager;
+use Elementor\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -23,6 +23,9 @@ class Icons_Manager {
 	const FONT_ICON_SVG_CLASS_NAME = 'e-font-icon-svg';
 
 	const LOAD_FA4_SHIM_OPTION_KEY = 'elementor_load_fa4_shim';
+
+	const ELEMENTOR_ICONS_VERSION = '5.23.0';
+
 	/**
 	 * Tabs.
 	 *
@@ -37,10 +40,41 @@ class Icons_Manager {
 
 	private static $data_manager;
 
-	private static $font_icon_svg_symbols = [];
-
 	private static function get_needs_upgrade_option() {
 		return get_option( 'elementor_' . self::NEEDS_UPDATE_OPTION, null );
+	}
+
+	/**
+	 * @param $icon
+	 * @param $attributes
+	 * @param $tag
+	 * @return bool|mixed|string
+	 */
+	public static function try_get_icon_html( $icon, $attributes = [], $tag = 'i' ) {
+		if ( empty( $icon['library'] ) ) {
+			return '';
+		}
+
+		return static::get_icon_html( $icon, $attributes, $tag );
+	}
+
+	/**
+	 * @param array $icon
+	 * @param array $attributes
+	 * @param $tag
+	 * @return bool|mixed|string
+	 */
+	private static function get_icon_html( array $icon, array $attributes, $tag ) {
+		/**
+		 * When the library value is svg it means that it's a SVG media attachment uploaded by the user.
+		 * Otherwise, it's the name of the font family that the icon belongs to.
+		 */
+		if ( 'svg' === $icon['library'] ) {
+			$output = self::render_uploaded_svg_icon( $icon['value'] );
+		} else {
+			$output = self::render_font_icon( $icon, $attributes, $tag );
+		}
+		return $output;
 	}
 
 	/**
@@ -60,7 +94,7 @@ class Icons_Manager {
 			$dependencies = [];
 			if ( ! empty( $icon_type['enqueue'] ) ) {
 				foreach ( (array) $icon_type['enqueue'] as $font_css_url ) {
-					if ( ! in_array( $font_css_url, array_keys( $shared_styles ) ) ) {
+					if ( ! in_array( $font_css_url, array_keys( $shared_styles ), true ) ) {
 						$style_handle = 'elementor-icons-shared-' . count( $shared_styles );
 						wp_register_style(
 							$style_handle,
@@ -92,7 +126,7 @@ class Icons_Manager {
 	 * @since 2.4.0
 	 */
 	private static function init_tabs() {
-		self::$tabs = apply_filters( 'elementor/icons_manager/native', [
+		$initial_tabs = [
 			'fa-regular' => [
 				'name' => 'fa-regular',
 				'label' => esc_html__( 'Font Awesome - Regular', 'elementor' ),
@@ -129,7 +163,18 @@ class Icons_Manager {
 				'fetchJson' => self::get_fa_asset_url( 'brands', 'js', false ),
 				'native' => true,
 			],
-		] );
+		];
+
+		/**
+		 * Initial icon manager tabs.
+		 *
+		 * Filters the list of initial icon manager tabs.
+		 *
+		 * @param array $icon_manager_tabs Initial icon manager tabs.
+		 */
+		$initial_tabs = apply_filters( 'elementor/icons_manager/native', $initial_tabs );
+
+		self::$tabs = $initial_tabs;
 	}
 
 	/**
@@ -143,12 +188,22 @@ class Icons_Manager {
 			self::init_tabs();
 		}
 
-		$additional_tabs = apply_filters( 'elementor/icons_manager/additional_tabs', [] );
+		$additional_tabs = [];
 
-		return array_merge( self::$tabs, $additional_tabs );
+		/**
+		 * Additional icon manager tabs.
+		 *
+		 * Filters additional icon manager tabs.
+		 *
+		 * @param array $additional_tabs Additional icon manager tabs. Default is an empty array.
+		 */
+		$additional_tabs = apply_filters( 'elementor/icons_manager/additional_tabs', $additional_tabs );
+
+		return array_replace( self::$tabs, $additional_tabs );
 	}
 
 	public static function enqueue_shim() {
+		//phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 		wp_enqueue_script(
 			'font-awesome-4-shim',
 			self::get_fa_asset_url( 'v4-shims', 'js' ),
@@ -208,33 +263,12 @@ class Icons_Manager {
 	}
 
 	/**
-	 * render_svg_symbols
-	 *
+	 * @deprecated 3.8.0
 	 */
-	public static function render_svg_symbols() {
-		if ( ! self::$font_icon_svg_symbols ) {
-			return;
-		}
-
-		$svg = '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">';
-
-		foreach ( self::$font_icon_svg_symbols as $symbol_id => $symbol ) {
-			$svg .= '<symbol id="' . $symbol_id . '" viewBox="0 0 ' . esc_attr( $symbol['width'] ) . ' ' . esc_attr( $symbol['height'] ) . '">';
-			$svg .= '<path d="' . esc_attr( $symbol['path'] ) . '"></path>';
-			$svg .= '</symbol>';
-		}
-
-		$svg .= '</svg>';
-
-		Utils::print_unescaped_internal_string( $svg );
-	}
+	public static function render_svg_symbols() {}
 
 	public static function get_icon_svg_data( $icon ) {
-		$font_family_manager = Font_Icon_Svg_Manager::get_font_family_manager( $icon['font_family'] );
-
-		$config = $font_family_manager::get_config( $icon );
-
-		return self::$data_manager->get_asset_data( $config );
+		return self::$data_manager->get_font_icon_svg_data( $icon );
 	}
 
 	/**
@@ -251,29 +285,20 @@ class Icons_Manager {
 			return '';
 		}
 
-		// Add the icon data to the symbols array for later use in page rendering process.
-		if ( ! in_array( $icon_data['key'], self::$font_icon_svg_symbols, true ) ) {
-			self::$font_icon_svg_symbols[ $icon_data['key'] ] = $icon_data;
-		}
-
 		if ( ! empty( $attributes['class'] ) && ! is_array( $attributes['class'] ) ) {
 			$attributes['class'] = [ $attributes['class'] ];
 		}
 
 		$attributes['class'][] = self::FONT_ICON_SVG_CLASS_NAME;
+		$attributes['class'][] = 'e-' . $icon_data['key'];
+		$attributes['viewBox'] = '0 0 ' . $icon_data['width'] . ' ' . $icon_data['height'];
+		$attributes['xmlns'] = 'http://www.w3.org/2000/svg';
 
-		/**
-		 * If in edit mode inline the full svg, otherwise use the symbol.
-		 * Will be displayed only after page update or widget "blur".
-		 */
-		if ( Plugin::$instance->editor->is_edit_mode() ) {
-			return '<svg xmlns="http://www.w3.org/2000/svg" ' . Utils::render_html_attributes( $attributes ) . '
-				viewBox="0 0 ' . esc_attr( $icon_data['width'] ) . ' ' . esc_attr( $icon_data['height'] ) . '">
-				<path d="' . esc_attr( $icon_data['path'] ) . '"></path>
-			</svg>';
-		}
-
-		return '<svg ' . Utils::render_html_attributes( $attributes ) . '><use xlink:href="#' . esc_attr( $icon_data['key'] ) . '" /></svg>';
+		return (
+			'<svg ' . Utils::render_html_attributes( $attributes ) . '>' .
+				'<path d="' . esc_attr( $icon_data['path'] ) . '"></path>' .
+			'</svg>'
+		);
 	}
 
 	public static function render_uploaded_svg_icon( $value ) {
@@ -281,7 +306,7 @@ class Icons_Manager {
 			return '';
 		}
 
-		return Svg_Handler::get_inline_svg( $value['id'] );
+		return Svg::get_inline_svg( $value['id'] );
 	}
 
 	public static function render_font_icon( $icon, $attributes = [], $tag = 'i' ) {
@@ -293,7 +318,7 @@ class Icons_Manager {
 
 		$content = '';
 
-		$font_icon_svg_family = self::is_font_icon_inline_svg() ? Font_Icon_Svg_Manager::get_font_family( $icon['library'] ) : '';
+		$font_icon_svg_family = self::is_font_icon_inline_svg() ? Font_Icon_Svg_Data_Manager::get_font_family( $icon['library'] ) : '';
 
 		if ( $font_icon_svg_family ) {
 			$icon['font_family'] = $font_icon_svg_family;
@@ -335,17 +360,7 @@ class Icons_Manager {
 			return false;
 		}
 
-		$output = '';
-
-		/**
-		 * When the library value is svg it means that it's a SVG media attachment uploaded by the user.
-		 * Otherwise, it's the name of the font family that the icon belongs to.
-		 */
-		if ( 'svg' === $icon['library'] ) {
-			$output = self::render_uploaded_svg_icon( $icon['value'] );
-		} else {
-			$output = self::render_font_icon( $icon, $attributes, $tag );
-		}
+		$output = static::get_icon_html( $icon, $attributes, $tag );
 
 		Utils::print_unescaped_internal_string( $output );
 
@@ -371,7 +386,7 @@ class Icons_Manager {
 			];
 		}
 		if ( false === $migration_dictionary ) {
-			$migration_dictionary = json_decode( file_get_contents( ELEMENTOR_ASSETS_PATH . 'lib/font-awesome/migration/mapping.js' ), true );
+			$migration_dictionary = json_decode( Utils::file_get_contents( ELEMENTOR_ASSETS_PATH . 'lib/font-awesome/migration/mapping.js' ), true );
 		}
 		if ( isset( $migration_dictionary[ $value ] ) ) {
 			return $migration_dictionary[ $value ];
@@ -429,7 +444,11 @@ class Icons_Manager {
 			$migration_allowed = null === self::get_needs_upgrade_option();
 
 			/**
-			 * allowed to filter migration allowed
+			 * Is icon migration allowed.
+			 *
+			 * Filters whether the icons migration allowed.
+			 *
+			 * @param bool $migration_allowed Is icon migration is allowed.
 			 */
 			$migration_allowed = apply_filters( 'elementor/icons_manager/migration_allowed', $migration_allowed );
 		}
@@ -451,7 +470,7 @@ class Icons_Manager {
 				'label' => esc_html__( 'Load Font Awesome 4 Support', 'elementor' ),
 				'field_args' => [
 					'type' => 'select',
-					'std' => 'yes',
+					'std' => '',
 					'options' => [
 						'' => esc_html__( 'No', 'elementor' ),
 						'yes' => esc_html__( 'Yes', 'elementor' ),
@@ -469,26 +488,27 @@ class Icons_Manager {
 			'callback' => function() {
 				echo '<h2>' . esc_html__( 'Font Awesome Upgrade', 'elementor' ) . '</h2>';
 				echo '<p>' . // PHPCS - Plain Text
-				__( 'Access 1,500+ amazing Font Awesome 5 icons and enjoy faster performance and design flexibility.', 'elementor' ) . '<br>' . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				__( 'By upgrading, whenever you edit a page containing a Font Awesome 4 icon, Elementor will convert it to the new Font Awesome 5 icon.', 'elementor' ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				esc_html__( 'Access 1,500+ amazing Font Awesome 5 icons and enjoy faster performance and design flexibility.', 'elementor' ) . '<br>' . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				esc_html__( 'By upgrading, whenever you edit a page containing a Font Awesome 4 icon, Elementor will convert it to the new Font Awesome 5 icon.', 'elementor' ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'</p><p><strong>' .
-				__( 'Please note that the upgrade process may cause some of the previously used Font Awesome 4 icons to look a bit different due to minor design changes made by Font Awesome.', 'elementor' ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				esc_html__( 'Please note that the upgrade process may cause some of the previously used Font Awesome 4 icons to look a bit different due to minor design changes made by Font Awesome.', 'elementor' ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'</strong></p><p>' .
-				__( 'The upgrade process includes a database update', 'elementor' ) . ' - ' . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				__( 'We highly recommend backing up your database before performing this upgrade.', 'elementor' ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				esc_html__( 'The upgrade process includes a database update', 'elementor' ) . ' - ' . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				esc_html__( 'We highly recommend backing up your database before performing this upgrade.', 'elementor' ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'</p>' .
-				__( 'This action is not reversible and cannot be undone by rolling back to previous versions.', 'elementor' ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				esc_html__( 'This action is not reversible and cannot be undone by rolling back to previous versions.', 'elementor' ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'</p>';
 			},
 			'fields' => [
 				[
-					'label'      => esc_html__( 'Font Awesome Upgrade', 'elementor' ),
+					'label' => esc_html__( 'Font Awesome Upgrade', 'elementor' ),
 					'field_args' => [
 						'type' => 'raw_html',
-						'html' => sprintf( '<span data-action="%s" data-_nonce="%s" class="button" id="elementor_upgrade_fa_button">%s</span>',
+						'html' => sprintf( '<span data-action="%s" data-_nonce="%s" data-redirect-url="%s" class="button" id="elementor_upgrade_fa_button">%s</span>',
 							self::NEEDS_UPDATE_OPTION . '_upgrade',
 							wp_create_nonce( self::NEEDS_UPDATE_OPTION ),
-							__( 'Upgrade To Font Awesome 5', 'elementor' )
+							esc_url( $this->get_upgrade_redirect_url() ),
+							esc_html__( 'Upgrade To Font Awesome 5', 'elementor' )
 						),
 					],
 				],
@@ -497,14 +517,44 @@ class Icons_Manager {
 	}
 
 	/**
+	 * Get redirect URL when upgrading font awesome.
+	 *
+	 * @return string
+	 */
+	public function get_upgrade_redirect_url() {
+
+		if ( ! wp_verify_nonce( Utils::get_super_global_value( $_GET, '_wpnonce' ), 'tools-page-from-editor' ) ) {
+			return '';
+		}
+
+		$document_id = ! empty( $_GET['redirect_to_document'] ) ? absint( $_GET['redirect_to_document'] ) : null;
+
+		if ( ! $document_id ) {
+			return '';
+		}
+
+		$document = Plugin::$instance->documents->get( $document_id );
+
+		if ( ! $document ) {
+			return '';
+		}
+
+		return $document->get_edit_url();
+	}
+
+	/**
 	 * Ajax Upgrade to FontAwesome 5
 	 */
 	public function ajax_upgrade_to_fa5() {
 		check_ajax_referer( self::NEEDS_UPDATE_OPTION, '_nonce' );
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( 'Permission denied' );
+		}
+
 		delete_option( 'elementor_' . self::NEEDS_UPDATE_OPTION );
 
-		wp_send_json_success( [ 'message' => '<p>' . esc_html__( 'Hurray! The upgrade process to Font Awesome 5 was completed successfully.', 'elementor' ) . '</p>' ] );
+		wp_send_json_success( [ 'message' => esc_html__( 'Hurray! The upgrade process to Font Awesome 5 was completed successfully.', 'elementor' ) ] );
 	}
 
 	/**
@@ -526,7 +576,7 @@ class Icons_Manager {
 			$load_shim = get_option( self::LOAD_FA4_SHIM_OPTION_KEY, false );
 			if ( 'elementor/editor/after_enqueue_styles' === $current_filter ) {
 				self::enqueue_shim();
-			} else if ( 'yes' === $load_shim ) {
+			} elseif ( 'yes' === $load_shim ) {
 				self::enqueue_shim();
 			}
 		}
@@ -542,22 +592,6 @@ class Icons_Manager {
 	}
 
 	/**
-	 * @since 3.0.0
-	 * @deprecated 3.0.0
-	 */
-	public function register_ajax_actions() {
-		_deprecated_function( __METHOD__, '3.0.0' );
-	}
-
-	/**
-	 * @since 3.0.0.
-	 * @deprecated 3.0.0
-	 */
-	public function ajax_enable_svg_uploads() {
-		_deprecated_function( __METHOD__, '3.0.0' );
-	}
-
-	/**
 	 * Icons Manager constructor
 	 */
 	public function __construct() {
@@ -568,8 +602,6 @@ class Icons_Manager {
 
 		if ( self::is_font_icon_inline_svg() ) {
 			self::$data_manager = new Font_Icon_Svg_Data_Manager();
-
-			add_action( 'wp_footer', [ $this, 'render_svg_symbols' ], 10 );
 		}
 
 		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'enqueue_fontawesome_css' ] );

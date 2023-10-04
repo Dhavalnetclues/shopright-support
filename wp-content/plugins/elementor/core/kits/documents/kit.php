@@ -70,7 +70,7 @@ class Kit extends PageBase {
 		$config = parent::get_editor_panel_config();
 		$config['default_route'] = 'panel/global/menu';
 
-		$config['needHelpUrl'] = 'https://go.elementor.com/global-settings';
+		$config['needHelpUrl'] = 'https://go.elementor.com/global-settings/';
 
 		return $config;
 	}
@@ -126,6 +126,7 @@ class Kit extends PageBase {
 
 		foreach ( $this->tabs as $id => $tab ) {
 			$config['tabs'][ $id ] = [
+				'id' => $id,
 				'title' => $tab->get_title(),
 				'icon' => $tab->get_icon(),
 				'group' => $tab->get_group(),
@@ -222,8 +223,7 @@ class Kit extends PageBase {
 			'settings-background' => Tabs\Settings_Background::class,
 			'settings-layout' => Tabs\Settings_Layout::class,
 			'settings-lightbox' => Tabs\Settings_Lightbox::class,
-			// TODO: Revert when Page Transitions will be released.
-			//'settings-page-transitions' => Tabs\Settings_Page_Transitions::class,
+			'settings-page-transitions' => Tabs\Settings_Page_Transitions::class,
 			'settings-custom-css' => Tabs\Settings_Custom_CSS::class,
 		];
 

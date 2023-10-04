@@ -1,10 +1,9 @@
 <?php
-
 namespace Elementor\Modules\AdminTopBar;
 
+use Elementor\Plugin;
 use Elementor\Core\Base\App as BaseApp;
 use Elementor\Core\Experiments\Manager;
-use Elementor\Plugin;
 use Elementor\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,18 +19,6 @@ class Module extends BaseApp {
 		return is_admin();
 	}
 
-	public static function get_experimental_data() {
-		return [
-			'name' => 'admin-top-bar',
-			'title' => esc_html__( 'Admin Top Bar', 'elementor' ),
-			'description' => esc_html__( 'Adds a top bar to elementors pages in admin area.', 'elementor' ),
-			'release_status' => Manager::RELEASE_STATUS_BETA,
-			'new_site' => [
-				'default_active' => true,
-			],
-		];
-	}
-
 	/**
 	 * @return string
 	 */
@@ -45,17 +32,12 @@ class Module extends BaseApp {
 		</div>
 		<?php
 	}
-	protected function get_init_settings() {
-		return [
-			'is_administrator' => current_user_can( 'manage_options' ),
-		];
-	}
 
 	/**
 	 * Enqueue admin scripts
 	 */
 	private function enqueue_scripts() {
-		wp_enqueue_style( 'elementor-admin-top-bar-fonts', 'https://fonts.googleapis.com/css2?family=Roboto&display=swap', [], ELEMENTOR_VERSION );
+		wp_enqueue_style( 'elementor-admin-top-bar-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap', [], ELEMENTOR_VERSION );
 
 		wp_enqueue_style( 'elementor-admin-top-bar', $this->get_css_assets_url( 'admin-top-bar', null, 'default', true ), [], ELEMENTOR_VERSION );
 
@@ -63,7 +45,10 @@ class Module extends BaseApp {
 			'elementor-common',
 			'react',
 			'react-dom',
+			'tipsy',
 		], ELEMENTOR_VERSION, true );
+
+		wp_set_script_translations( 'elementor-admin-top-bar', 'elementor' );
 
 		$min_suffix = Utils::is_script_debug() ? '' : '.min';
 
@@ -74,18 +59,50 @@ class Module extends BaseApp {
 		$this->print_config();
 	}
 
-	/**
-	 * Register dashboard widgets.
-	 *
-	 * Adds a new Elementor widgets to WordPress dashboard.
-	 *
-	 * Fired by `wp_dashboard_setup` action.
-	 *
-	 * @since 1.9.0
-	 * @access public
-	 */
-	public function register_dashboard_widgets() {
-		wp_add_dashboard_widget( 'e-dashboard-widget-admin-top-bar', __( 'Elementor Top Bar', 'elementor' ), function () {} );
+	private function add_frontend_settings() {
+		$settings = [];
+		$settings['is_administrator'] = current_user_can( 'manage_options' );
+
+		// TODO: Find a better way to add apps page url to the admin top bar.
+		$settings['apps_url'] = admin_url( 'admin.php?page=elementor-apps' );
+
+		$current_screen = get_current_screen();
+
+		/** @var \Elementor\Core\Common\Modules\Connect\Apps\Library $library */
+		$library = Plugin::$instance->common->get_component( 'connect' )->get_app( 'library' );
+		if ( $library ) {
+			$settings = array_merge( $settings, [
+				'is_user_connected' => $library->is_connected(),
+				'connect_url' => $library->get_admin_url( 'authorize', [
+					'utm_source' => 'top-bar',
+					'utm_medium' => 'wp-dash',
+					'utm_campaign' => 'connect-account',
+					'utm_content' => $current_screen->id,
+					'source' => 'generic',
+				] ),
+			] );
+		}
+
+		$this->set_settings( $settings );
+
+		do_action( 'elementor/admin-top-bar/init', $this );
+	}
+
+	private function is_top_bar_active() {
+		$current_screen = get_current_screen();
+
+		if ( ! $current_screen ) {
+			return false;
+		}
+
+		$is_elementor_page = strpos( $current_screen->id ?? '', 'elementor' ) !== false;
+		$is_elementor_post_type_page = strpos( $current_screen->post_type ?? '', 'elementor' ) !== false;
+
+		return apply_filters(
+			'elementor/admin-top-bar/is-active',
+			$is_elementor_page || $is_elementor_post_type_page,
+			$current_screen
+		);
 	}
 
 	/**
@@ -94,16 +111,20 @@ class Module extends BaseApp {
 	public function __construct() {
 		parent::__construct();
 
-		add_action( 'in_admin_header', function () {
-			$this->render_admin_top_bar();
-		} );
+		add_action( 'current_screen', function () {
+			if ( ! $this->is_top_bar_active() ) {
+				return;
+			}
 
-		add_action( 'admin_enqueue_scripts', function () {
-			$this->enqueue_scripts();
-		} );
+			$this->add_frontend_settings();
 
-		add_action( 'wp_dashboard_setup', function () {
-			$this->register_dashboard_widgets();
+			add_action( 'in_admin_header', function () {
+				$this->render_admin_top_bar();
+			} );
+
+			add_action( 'admin_enqueue_scripts', function () {
+				$this->enqueue_scripts();
+			} );
 		} );
 	}
 }
