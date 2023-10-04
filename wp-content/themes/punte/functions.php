@@ -616,7 +616,7 @@ function xp_cloud_office_list($atts) {
                 $Title = get_field('cloud_office__sub_cat_title');
                 $LinkText = get_field('cloud_office_sub_cat_link_text');
                 $Link = get_field('cloud_office_sub_cat_link');
-                $Icon = get_field('cloud_office_icon');
+                $Icon = get_field('cloud_office_sub_cat_icon');
                 $Color = get_field('cloud_office_sub_cat_color');
                 if(isset($MainCat->post_name) && isset($atts['title']) && $MainCat->post_name == $atts['title']){
                     $content_html .='<div class="col-lg-3 col-md-4 col-sm-6">
