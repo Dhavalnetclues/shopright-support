@@ -2499,10 +2499,10 @@ ul.punte-main-menu ul.sub-menu li + li{border-top:1px solid rgba(0,0,0,0.1);}
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    background: rgba(230,248,254,1);
+    background: #e9f6e5;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
-    color: #45b327;
+    color: #000000;
 }
 .faqs .elementor-accordion-item + .elementor-accordion-item
 {
