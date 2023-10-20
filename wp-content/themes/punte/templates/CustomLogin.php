@@ -30,7 +30,7 @@ if(isset($_SESSION['user_login_error']) && !empty($_SESSION['user_login_error'])
 <div class="login-page">
 <div class="row no-gutters h-100">
     <div class="col-lg-6">
-        <div class="bg-login d-flex align-items-center justify-content-center" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/images/login-bg.jpg')">
+        <div class="bg-login d-flex align-items-center justify-content-center" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/images/login-bg.webp')">
             <div class="content-wrap">
                 <div class="round-bg d-flex align-items-center justify-content-center">
                     <a href="<?php echo site_url(); ?>" title="ShopRight - Help Desk"><img src="<?php if(isset($header_logo) && !empty($header_logo) ){

@@ -137,7 +137,7 @@ if ( !function_exists( 'punte_add_search_block' ) ) {
 
         if ( $enable_navbar_search ) {
             if ( $args->theme_location == 'primary' ) {
-                $items .= '<li class="menu-item menu-item menu-item-search"><a href="javascript:void(0)">'.$search_icon.'</a></li>';
+                $items .= '<li class="menu-item menu-item menu-item-search"><span>'.$search_icon.'</span></li>';
             }
         }
         return $items;
@@ -370,7 +370,7 @@ if ( !function_exists( 'punte_mobile_header' ) ) {
             if ( $enable_navbar_search ) {
                 $search_icon = punte_get_icon_svg('search');
                 echo '<div class="punte-mobile-search">';
-                echo '<a href="javascript:void(0)">'.$search_icon.'</a>';
+                echo '<span>'.$search_icon.'</span>';
                 echo '</div>';
             }
             ?>

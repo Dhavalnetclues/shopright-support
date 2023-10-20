@@ -1816,9 +1816,6 @@ ul.punte-main-menu>li>a svg {
 ul.punte-main-menu>li:first-child>a{
     padding-left: 0;
 }
-ul.punte-main-menu>li:last-child>a{
-    /*padding-right: 0;*/
-}
 ul.punte-main-menu ul.sub-menu {
     background: #fff;
     padding:0px;
